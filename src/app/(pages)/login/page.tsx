@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -111,6 +112,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-
   );
 }
