@@ -1,25 +1,19 @@
-import CtaSection from "./components/cta";
-import FeaturesSection from "./components/features";
-import FooterSection from "./components/rodape";
-import HeroSection from "./components/hero";
-import HowItWorks from "./components/how-it-works";
-import PartnersSection from "./components/partners";
-import PricingSection from "./components/pricing";
-import TestimonialsSection from "./components/testimonials";
+/* eslint-disable */
+
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-1">
-        <HeroSection />
-        <PartnersSection />
-        <HowItWorks />
-        <FeaturesSection />
-        <PricingSection />
-        <TestimonialsSection />
-        <CtaSection />
-      </main>
-      <FooterSection />
+    <div className="flex min-h-screen items-center justify-center">
+      <Link href="/login" passHref>
+        <Button
+          variant="outline"
+          className="px-4 py-2 text-sm font-medium cursor-pointer border-[#3D195B] text-[#3D195B] hover:bg-[#3D195B] hover:text-white"
+        >
+          Login &rarr;
+        </Button>
+      </Link>
     </div>
   );
 }
