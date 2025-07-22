@@ -41,7 +41,6 @@ export default function PersonalDataForm() {
                             <Label htmlFor="name">Nome</Label>
                             <Input
                                 id="name"
-                                defaultValue="Mikael Ângelo"
                                 className="bg-background"
                             />
                         </div>
@@ -51,7 +50,6 @@ export default function PersonalDataForm() {
                             <Input
                                 id="email"
                                 type="email"
-                                defaultValue="mikaelangeloquaresma@gmail.com"
                                 className="bg-background"
                             />
                             <p className="text-sm text-destructive">E-mail já está em uso</p>
@@ -62,7 +60,6 @@ export default function PersonalDataForm() {
                             <Input
                                 id="phone"
                                 type="tel"
-                                defaultValue="(41) 23231-2312"
                                 className="bg-background"
                             />
                             <p className="text-sm text-destructive">Número de telefone não é válido</p>

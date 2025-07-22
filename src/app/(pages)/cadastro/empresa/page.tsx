@@ -43,7 +43,6 @@ export default function CompanyDataForm() {
                             <Label htmlFor="companyName">Nome da Empresa</Label>
                             <Input
                                 id="companyName"
-                                defaultValue="Empresa Exemplo Ltda"
                                 className="bg-background"
                             />
                         </div>
@@ -53,7 +52,6 @@ export default function CompanyDataForm() {
                             <Input
                                 id="corporateEmail"
                                 type="email"
-                                defaultValue="contato@empresaexemplo.com"
                                 className="bg-background"
                             />
                             <p className="text-sm text-destructive">E-mail já está em uso</p>
@@ -64,7 +62,6 @@ export default function CompanyDataForm() {
                             <Input
                                 id="phone"
                                 type="tel"
-                                defaultValue="(11) 91234-5678"
                                 className="bg-background"
                             />
                             <p className="text-sm text-destructive">Número de telefone não é válido</p>
