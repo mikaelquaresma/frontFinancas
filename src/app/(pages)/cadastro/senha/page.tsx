@@ -91,3 +91,4 @@ export default function PasswordForm() {
         </div>
     );
 }
+export const dynamic = "force-dynamic";
