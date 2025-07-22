@@ -9,7 +9,7 @@ import NavbarLogoCenter from "@/components/navBarLogoCenter";
 
 export default function Login() {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex" style={{ background: "#f4f3f5" }}>
       <div className="absolute w-full top-0 z-50"><NavbarLogoCenter /></div>
 
       <div
@@ -18,13 +18,13 @@ export default function Login() {
         <div
           className="absolute inset-0 transition-transform duration-1000 ease-in-out will-change-transform group-hover:scale-110 z-0"
           style={{
-            backgroundImage: 'url(https://img.freepik.com/vetores-gratis/fundo-abstrato-da-malha-do-vetor-pontos-cosmicamente-conectados-e-poligonos-que-voam-no-espaco-restos-voadores-cartao-futurista-de-estilo-tecnologico-linhas-pontos-circulos-e-avioes-design-futurista_1217-713.jpg?t=st=1753141169~exp=1753144769~hmac=3ac07ba5a3146feedf2f4a3914cb9804a9e8ab89ad095c4f30db027e2ec6b665&w=740)',
+            backgroundImage: 'url(https://img.freepik.com/fotos-gratis/retrato-de-uma-mulher-jogando-poquer-em-um-cassino_23-2151830999.jpg?t=st=1753156805~exp=1753160405~hmac=f14666b73068cb3c68a1c372509e2886bfcbd73ebb0faa0da35024fe35caa8e7&w=2000)',
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'top',
           }}
         />
         {/* Overlay e texto, sem zoom */}
-        <div className="absolute inset-0 bg-neutral-950/50 flex items-center justify-center p-12 z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-purple-950/30 flex items-center justify-center p-12 z-10 pointer-events-none">
           <div className="text-white text-center select-none">
             <h2 className="text-4xl font-bold mb-4">Sobra Mais</h2>
             <p className="text-xl">
@@ -38,10 +38,14 @@ export default function Login() {
       <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-[600px] mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-md">
           <div className="text-center lg:hidden">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Login ao painel</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: "#3D195B" }}>
+              Login ao painel
+            </h1>
           </div>
           <div className="hidden lg:block text-center">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Login ao painel</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: "#3D195B" }}>
+              Login ao painel
+            </h1>
           </div>
 
           <form className="mt-6 sm:mt-8 space-y-4 sm:space-y-6">
@@ -82,7 +86,7 @@ export default function Login() {
               </div>
 
               <div className="text-xs sm:text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="#" className="font-medium text-[#3D195B] hover:text-[#2a1240]">
                   Esqueceu a senha?
                 </a>
               </div>
@@ -91,7 +95,7 @@ export default function Login() {
             <div>
               <Button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white bg-[#3D195B] hover:bg-[#2a1240] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3D195B]"
               >
                 Login
               </Button>
@@ -100,7 +104,7 @@ export default function Login() {
 
           <div className="mt-6 text-center text-sm text-gray-600">
             Já tem uma conta?{" "}
-            <a href="/cadastro" className="font-medium text-indigo-600 hover:text-indigo-700">
+            <a href="/cadastro" className="font-medium text-[#3D195B] hover:text-[#2a1240]">
               Criar uma nova conta
             </a>
           </div>

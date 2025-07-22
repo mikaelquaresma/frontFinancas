@@ -11,8 +11,8 @@ import Link from "next/link";
 export default function CompanyDataForm() {
     return (
         <div
-            className="min-h-screen flex flex-col items-center justify-center bg-gray-50"
-            style={{ height: "100vh" }}
+            className="min-h-screen flex flex-col items-center justify-center"
+            style={{ height: "100vh", background: "#f4f3f5" }}
         >
             <div className="absolute w-full top-0"><NavbarLogoCenter /></div>
 
@@ -20,7 +20,7 @@ export default function CompanyDataForm() {
                 <Link href="/cadastro" passHref>
                     <Button
                         variant="outline"
-                        className="px-4 py-2 text-sm font-medium cursor-pointer"
+                        className="px-4 py-2 text-sm font-medium cursor-pointer border-[#3D195B] text-[#3D195B] hover:bg-[#3D195B] hover:text-white"
                     >
                         ← Voltar
                     </Button>
@@ -29,7 +29,9 @@ export default function CompanyDataForm() {
 
             <Card className="bg-white p-6 sm:p-8 rounded-lg shadow-md w-full max-w-[600px] flex flex-col justify-center">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-2xl">Preencha os dados</CardTitle>
+                    <CardTitle className="text-2xl" style={{ color: "#3D195B" }}>
+                        Preencha os dados
+                    </CardTitle>
                 </CardHeader>
 
                 <div className="w-full p-0 sm:p-6 space-y-6">
@@ -83,7 +85,7 @@ export default function CompanyDataForm() {
 
                     <div className="flex justify-end">
                         <Link href="/cadastro/senha?tipo=empresa" passHref>
-                            <Button className="w-auto flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <Button className="w-auto flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white bg-[#3D195B] hover:bg-[#2a1240] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3D195B]">
                                 Próximo &gt;
                             </Button>
                         </Link>

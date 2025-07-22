@@ -41,8 +41,8 @@ export default function CadastroPage() {
 
     return (
         <div
-            className="min-h-screen flex flex-col items-center justify-center bg-gray-50"
-            style={{ height: "100vh" }}
+            className="min-h-screen flex flex-col items-center justify-center"
+            style={{ height: "100vh", background: "#f4f3f5" }}
         >
             <div className="absolute w-full top-0"><NavbarLogoCenter /></div>
 
@@ -50,7 +50,7 @@ export default function CadastroPage() {
                 <Link href="/login" passHref>
                     <Button
                         variant="outline"
-                        className="px-4 py-2 text-sm font-medium cursor-pointer"
+                        className="px-4 py-2 text-sm font-medium cursor-pointer border-[#3D195B] text-[#3D195B] hover:bg-[#3D195B] hover:text-white"
                     >
                         ← Login
                     </Button>
@@ -60,33 +60,45 @@ export default function CadastroPage() {
             <CadastroCard>
                 <Card className="bg-white p-6 sm:p-8 rounded-lg shadow-md w-full h-full flex flex-col justify-center">
                     <CardHeader className="text-center">
-                        <CardTitle className="text-2xl">Crie sua conta</CardTitle>
+                        <CardTitle className="text-2xl" style={{ color: "#3D195B" }}>
+                            Crie sua conta
+                        </CardTitle>
                         <p className="text-sm text-muted-foreground mt-2">Para começar, escolha o tipo da sua conta</p>
                     </CardHeader>
                     <CardContent className="space-y-6">
                         <div className="space-y-4">
                             <button
                                 onClick={() => { setSelectedAccountType("pessoa"); setTouched(false); }}
-                                className={`w-full p-4 border rounded-lg text-left transition-colors ${selectedAccountType === "pessoa"
-                                        ? "border-indigo-600 bg-indigo-50"
+                                className={`w-full p-4 border rounded-lg text-left transition-colors ${
+                                    selectedAccountType === "pessoa"
+                                        ? "border-[#3D195B] bg-[#3D195B] text-white"
                                         : "hover:bg-accent/50"
-                                    }`}
+                                }`}
                             >
-                                <h3 className="font-medium">Pessoal</h3>
-                                <p className="text-sm text-muted-foreground mt-1">
+                                <h3 className={`font-medium ${
+                                    selectedAccountType === "pessoa" ? "text-white" : ""
+                                }`}>Pessoal</h3>
+                                <p className={`text-sm mt-1 ${
+                                    selectedAccountType === "pessoa" ? "text-[#e5e5e5]" : "text-muted-foreground"
+                                }`}>
                                     Para quem deseja gerenciar as finanças pessoais ou familiar.
                                 </p>
                             </button>
 
                             <button
                                 onClick={() => { setSelectedAccountType("empresa"); setTouched(false); }}
-                                className={`w-full p-4 border rounded-lg text-left transition-colors ${selectedAccountType === "empresa"
-                                        ? "border-indigo-600 bg-indigo-50"
+                                className={`w-full p-4 border rounded-lg text-left transition-colors ${
+                                    selectedAccountType === "empresa"
+                                        ? "border-[#3D195B] bg-[#3D195B] text-white"
                                         : "hover:bg-accent/50"
-                                    }`}
+                                }`}
                             >
-                                <h3 className="font-medium">Empresarial</h3>
-                                <p className="text-sm text-muted-foreground mt-1">
+                                <h3 className={`font-medium ${
+                                    selectedAccountType === "empresa" ? "text-white" : ""
+                                }`}>Empresarial</h3>
+                                <p className={`text-sm mt-1 ${
+                                    selectedAccountType === "empresa" ? "text-[#e5e5e5]" : "text-muted-foreground"
+                                }`}>
                                     Para quem deseja gerenciar as finanças da empresa.
                                 </p>
                             </button>
@@ -97,13 +109,13 @@ export default function CadastroPage() {
                         <div className="flex justify-between items-center pt-4">
                             <Link
                                 href="/login"
-                                className="text-sm text-indigo-600 hover:underline"
+                                className="text-sm text-[#3D195B] hover:underline"
                             >
                                 Já tem uma conta? Faça login
                             </Link>
                             <Button
                                 disabled={selectedAccountType !== "pessoa" && selectedAccountType !== "empresa"}
-                                className="w-auto flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="w-auto flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white bg-[#3D195B] hover:bg-[#2a1240] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3D195B]"
                                 asChild={!selectedAccountType || (selectedAccountType !== "pessoa" && selectedAccountType !== "empresa")}
                                 onClick={() => {
                                     if (!selectedAccountType || (selectedAccountType !== "pessoa" && selectedAccountType !== "empresa")) {
