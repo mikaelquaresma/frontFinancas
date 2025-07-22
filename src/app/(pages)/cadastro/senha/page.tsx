@@ -1,6 +1,8 @@
 /* eslint-disable */
+
 "use client";
 
+import React, { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -10,7 +12,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import NavbarLogoCenter from "@/components/navBarLogoCenter";
 
-export default function PasswordForm() {
+function PasswordFormInner() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const tipo = searchParams.get("tipo"); // "pessoa" ou "empresa"
@@ -91,4 +93,13 @@ export default function PasswordForm() {
         </div>
     );
 }
+
+export default function PasswordForm() {
+    return (
+        <Suspense>
+            <PasswordFormInner />
+        </Suspense>
+    );
+}
+
 export const dynamic = "force-dynamic";
