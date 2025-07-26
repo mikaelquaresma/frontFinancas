@@ -22,15 +22,15 @@ export default function MyCards({ cardData }: MyCardsProps) {
     ];
 
     return (
-        <Card className="bg-gradient-to-br from-blue-600 to-purple-700 border-0 p-4 sm:p-6 text-white">
-            <div className="flex items-center justify-between mb-4">
+        <Card className="bg-gradient-to-br from-blue-600 to-purple-700 border-0 p-3 sm:p-4 text-white">
+            <div className="flex items-center justify-between mb-3">
                 <h3 className="text-lg font-semibold">Meus Cartoes</h3>
                 <button className="bg-white/20 hover:bg-white/30 rounded-full p-2 transition-colors">
                     <Plus className="h-4 w-4" />
                 </button>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
                 <div className="flex items-center gap-2">
                     <div className="w-8 h-6 bg-white/20 rounded"></div>
                     <span className="text-lg font-mono tracking-wider">SobraMais</span>
@@ -52,7 +52,7 @@ export default function MyCards({ cardData }: MyCardsProps) {
             </div>
             
             {/* Card Actions */}
-            <div className="grid grid-cols-2 sm:flex gap-2 mt-4">
+            <div className="grid grid-cols-2 sm:flex gap-2 mt-3">
                 {actions.map((action, index) => {
                     const Icon = action.icon;
                     return (

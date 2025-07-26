@@ -89,8 +89,8 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
     };
 
     return (
-        <Card className="bg-gray-800 border-gray-700 p-4 sm:p-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
+        <Card className="bg-gray-800 border-gray-700 p-3 sm:p-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-3 sm:gap-0">
                 <h3 className="text-base sm:text-lg font-semibold text-white">Transacoes Recentes</h3>
                 <Select value={filter} onValueChange={handleFilterChange}>
                     <SelectTrigger className="w-full sm:w-[140px] bg-gray-700 border-gray-600 text-white">

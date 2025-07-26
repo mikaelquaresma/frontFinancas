@@ -46,12 +46,12 @@ export default function BalanceCards({ data }: BalanceCardsProps) {
             {cards.map((card, index) => {
                 const Icon = card.icon;
                 return (
-                    <Card key={index} className="bg-gray-800 border-gray-700 p-4 sm:p-6">
-                        <div className="flex items-center justify-between mb-2">
+                    <Card key={index} className="bg-gray-800 border-gray-700 p-3 sm:p-4">
+                        <div className="flex items-center justify-between mb-1">
                             <span className="text-gray-400 text-sm">{card.title}</span>
                             <MoreVertical className="h-4 w-4 text-gray-400" />
                         </div>
-                        <div className="text-xl sm:text-2xl font-bold text-white mb-1 break-words">
+                        <div className="text-lg sm:text-xl font-bold text-white mb-1 break-words">
                             R${card.value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </div>
                         <div className="flex items-center text-sm">

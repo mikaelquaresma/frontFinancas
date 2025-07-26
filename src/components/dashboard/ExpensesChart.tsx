@@ -1,6 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 interface ExpenseCategory {
     name: string;
@@ -18,14 +26,14 @@ interface ExpensesChartProps {
 }
 
 function DonutChart({ categories, total }: { categories: ExpenseCategory[]; total: number }) {
-    const radius = 70;
-    const strokeWidth = 16;
-    const size = (radius + strokeWidth) * 2 + 20; // Adding padding
+    const radius = 60;
+    const strokeWidth = 12;
+    const size = (radius + strokeWidth) * 2 + 16;
     const center = size / 2;
     
     return (
         <div className="relative flex items-center justify-center">
-            <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-52 lg:h-52 rounded-full relative overflow-hidden">
+            <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full relative overflow-hidden">
                 <svg className="w-full h-full transform -rotate-90" viewBox={`0 0 ${size} ${size}`}>
                     {categories.map((category, index) => {
                         const percentage = category.value;
@@ -52,42 +60,51 @@ function DonutChart({ categories, total }: { categories: ExpenseCategory[]; tota
                 </svg>
             </div>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-xs sm:text-sm text-gray-400 mb-1">Total</span>
-                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-white">R${total}</span>
+                <span className="text-xs text-gray-400 mb-1">Total</span>
+                <span className="text-base sm:text-lg font-bold text-white">R${total}</span>
             </div>
         </div>
     );
 }
 
 export default function ExpensesChart({ data }: ExpensesChartProps) {
+    const [filter, setFilter] = useState('mensal');
+
     return (
-        <Card className="bg-gray-800 border-gray-700 p-4 sm:p-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
+        <Card className="bg-gray-800 border-gray-700 p-3 sm:p-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
                 <h3 className="text-base sm:text-lg font-semibold text-white">Despesas</h3>
-                <select className="bg-gray-700 border-gray-600 text-white text-sm rounded px-3 py-1 w-full sm:w-auto">
-                    <option>Mensal</option>
-                    <option>Semanal</option>
-                    <option>Anual</option>
-                </select>
+                <Select value={filter} onValueChange={setFilter}>
+                    <SelectTrigger className="w-full sm:w-[120px] bg-gray-700 border-gray-600 text-white">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-gray-700 border-gray-600">
+                        <SelectItem value="mensal" className="text-white hover:bg-gray-600">Mensal</SelectItem>
+                        <SelectItem value="semanal" className="text-white hover:bg-gray-600">Semanal</SelectItem>
+                        <SelectItem value="anual" className="text-white hover:bg-gray-600">Anual</SelectItem>
+                    </SelectContent>
+                </Select>
             </div>
             
-            <div className="flex items-center justify-center mb-6 sm:mb-8">
-                <DonutChart categories={data.categories} total={data.total} />
-            </div>
-            
-            <div className="space-y-3 sm:space-y-4">
-                {data.categories.map((category, index) => (
-                    <div key={index} className="flex items-center justify-between group hover:bg-gray-700/30 rounded-lg p-2 transition-colors">
-                        <div className="flex items-center gap-3">
-                            <div 
-                                className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex-shrink-0"
-                                style={{ backgroundColor: category.color }}
-                            />
-                            <span className="text-gray-300 text-sm sm:text-base">{category.name}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 items-center">
+                <div className="sm:col-span-2 flex justify-center">
+                    <DonutChart categories={data.categories} total={data.total} />
+                </div>
+                
+                <div className="sm:col-span-3 space-y-2">
+                    {data.categories.map((category, index) => (
+                        <div key={index} className="flex items-center justify-between group hover:bg-gray-700/30 rounded-lg p-2 transition-colors">
+                            <div className="flex items-center gap-2">
+                                <div 
+                                    className="w-3 h-3 rounded-full flex-shrink-0"
+                                    style={{ backgroundColor: category.color }}
+                                />
+                                <span className="text-gray-300 text-sm">{category.name}</span>
+                            </div>
+                            <span className="text-white font-medium text-sm">{category.value}%</span>
                         </div>
-                        <span className="text-white font-medium text-sm sm:text-base">{category.value}%</span>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </Card>
     );
