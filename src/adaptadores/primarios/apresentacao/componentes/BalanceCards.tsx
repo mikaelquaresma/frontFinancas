@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "@/compartilhado/ui/card";
 import { MoreVertical, ArrowUp, ArrowDown } from "lucide-react";
 
 interface BalanceData {

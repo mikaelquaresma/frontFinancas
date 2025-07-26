@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "@/compartilhado/ui/card";
 import { Plus, ArrowUp, ArrowDown, TrendingUp, CreditCard } from "lucide-react";
 
 interface CardData {

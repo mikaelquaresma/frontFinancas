@@ -1,14 +1,14 @@
 "use client";
 
-import LayoutWrapper from "@/components/(layout)/layout";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
+import { Button } from "@/compartilhado/ui/button";
+import { Card } from "@/compartilhado/ui/card";
 import { Home, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
 export default function Custom404() {
     return (
-        <LayoutWrapper>
+        <WrapperLayout filhos={
             <>
                 <style jsx>{`
                   .error-bg {
@@ -47,6 +47,6 @@ export default function Custom404() {
                     </Card>
                 </div>
             </>
-        </LayoutWrapper>
+        } />
     );
 }

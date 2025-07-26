@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Home, Users, FileText, BarChart3, Bell, MessageSquare, Settings, HelpCircle, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/compartilhado/utilitarios/utils";
 
-interface SidebarProps {
-  isOpen?: boolean;
-  onClose?: () => void;
+interface PropsBarraLateral {
+  estaAberta?: boolean;
+  aoFechar?: () => void;
 }
 
-export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
+export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarraLateral) {
   const router = useRouter();
   const pathname = usePathname();
   
@@ -52,11 +52,11 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   return (
     <>
       {/* Mobile Overlay */}
-      {isOpen && (
+      {estaAberta && (
         <div 
           className="md:hidden fixed inset-0 z-40"
           style={{ backgroundColor: '#000000d4' }}
-          onClick={onClose}
+          onClick={aoFechar}
         />
       )}
 
@@ -67,12 +67,12 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         "md:fixed md:top-0 md:left-0 md:flex w-64",
         // Mobile: Hidden by default, slides in when open
         "hidden md:flex",
-        isOpen && "md:hidden fixed top-0 left-0 w-64 flex"
+        estaAberta && "md:hidden fixed top-0 left-0 w-64 flex"
       )}>
         {/* Close button for mobile */}
-        {isOpen && (
+        {estaAberta && (
           <button
-            onClick={onClose}
+            onClick={aoFechar}
             className="md:hidden absolute right-4 top-4 z-10 p-2 text-gray-400 hover:bg-gray-800 rounded-lg transition-colors"
           >
             <X size={20} />
@@ -106,7 +106,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   } else {
                     router.push("/404");
                   }
-                  if (onClose) onClose();
+                  if (aoFechar) aoFechar();
                 }}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
@@ -141,7 +141,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                     localStorage.setItem("lastClickedMenuItem", item.key);
                   }
                   router.push("/404");
-                  if (onClose) onClose();
+                  if (aoFechar) aoFechar();
                 }}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",

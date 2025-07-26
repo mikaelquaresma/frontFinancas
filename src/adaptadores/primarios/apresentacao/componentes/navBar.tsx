@@ -2,14 +2,14 @@
 
 import * as React from "react";
 import { Search, Bell, Menu } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/compartilhado/ui/avatar";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/compartilhado/ui/dropdown-menu";
 
-interface NavbarProps {
-  onMenuToggle?: () => void;
+interface PropsBarraNavegacao {
+  aoAlternarMenu?: () => void;
 }
 
-export default function Navbar({ onMenuToggle }: NavbarProps) {
+export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) {
   return (
     <>
       {/* Mobile Header */}
@@ -18,7 +18,7 @@ export default function Navbar({ onMenuToggle }: NavbarProps) {
         <nav className="w-full bg-gray-900 px-4 py-3 flex items-center justify-between">
           {/* Menu Button */}
           <button 
-            onClick={onMenuToggle}
+            onClick={aoAlternarMenu}
             className="p-2 text-gray-400 hover:bg-gray-800 rounded-lg transition-colors"
           >
             <Menu className="h-6 w-6" />

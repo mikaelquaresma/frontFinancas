@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card } from "@/compartilhado/ui/card";
+import { Button } from "@/compartilhado/ui/button";
 import {
     Table,
     TableBody,
@@ -10,15 +10,15 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table";
+} from "@/compartilhado/ui/table";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+} from "@/compartilhado/ui/select";
+import { Avatar, AvatarFallback } from "@/compartilhado/ui/avatar";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 interface Transaction {

@@ -1,6 +1,6 @@
 "use client";
 
-import LayoutWrapper from "@/components/(layout)/layout";
+import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
 import { useParams } from "next/navigation";
 
 export default function DashboardPage() {
@@ -8,10 +8,10 @@ export default function DashboardPage() {
     const id = params.teste;
 
     return (
-        <LayoutWrapper>
+        <WrapperLayout filhos={
             <div>
                 <h1>Dashboard ID: {id}</h1>
             </div>
-        </LayoutWrapper>
+        } />
     );
 }

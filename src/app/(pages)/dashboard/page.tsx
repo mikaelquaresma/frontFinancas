@@ -1,11 +1,11 @@
 "use client";
 
-import LayoutWrapper from "@/components/(layout)/layout";
-import BalanceCards from "@/components/dashboard/BalanceCards";
-import TransactionReports from "@/components/dashboard/TransactionReports";
-import RecentTransactions from "@/components/dashboard/RecentTransactions";
-import MyCards from "@/components/dashboard/MyCards";
-import ExpensesChart from "@/components/dashboard/ExpensesChart";
+import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
+import BalanceCards from "@/adaptadores/primarios/apresentacao/componentes/BalanceCards";
+import TransactionReports from "@/adaptadores/primarios/apresentacao/componentes/TransactionReports";
+import RecentTransactions from "@/adaptadores/primarios/apresentacao/componentes/RecentTransactions";
+import MyCards from "@/adaptadores/primarios/apresentacao/componentes/MyCards";
+import ExpensesChart from "@/adaptadores/primarios/apresentacao/componentes/ExpensesChart";
 
 const mockData = {
     balance: {
@@ -220,7 +220,7 @@ const mockData = {
 
 export default function DashboardPage() {
     return (
-        <LayoutWrapper>
+        <WrapperLayout filhos={
             <>
             <style jsx>{`
               .dashboard-bg {
@@ -261,6 +261,6 @@ export default function DashboardPage() {
                 </div>
             </div>
             </>
-        </LayoutWrapper>
+        } />
     );
 }
