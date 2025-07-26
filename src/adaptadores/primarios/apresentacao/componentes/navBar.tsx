@@ -27,6 +27,8 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
         return 'Início';
       case '/transferencias':
         return 'Transferências';
+      case '/relatorios':
+        return 'Relatórios';
       case '/configuracoes':
         return 'Configurações';
       default:
@@ -38,6 +40,8 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
     switch (pathname) {
       case '/transferencias':
         return 'Gerencie suas transferências e depósitos';
+      case '/relatorios':
+        return 'Análise detalhada de receitas e despesas';
       case '/configuracoes':
         return 'Personalize sua experiência no SobraMais';
       default:
