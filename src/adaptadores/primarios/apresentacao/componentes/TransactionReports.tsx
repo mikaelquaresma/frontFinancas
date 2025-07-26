@@ -10,6 +10,7 @@ import {
     SelectValue,
 } from "@/compartilhado/ui/select";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { useTheme } from "@/compartilhado/contextos/ThemeContext";
 
 interface TransactionReportsData {
     currentValue: number;
@@ -45,40 +46,71 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
 
 export default function TransactionReports({ data }: TransactionReportsProps) {
     const [filter, setFilter] = useState('mensal');
+    const { theme } = useTheme();
 
     return (
-        <Card className="bg-gray-800 border-gray-700 p-4">
+        <Card className={`p-4 ${
+            theme === 'dark' 
+                ? 'bg-gray-800 border-gray-700' 
+                : 'bg-white border-gray-200 shadow-sm'
+        }`}>
             <div className="flex items-center justify-between mb-4">
                 <div>
-                    <h3 className="text-lg font-semibold text-white">Relatorios de Transacoes</h3>
-                    <p className="text-sm text-gray-400">Grafico de relatorios de transacoes</p>
+                    <h3 className={`text-lg font-semibold ${
+                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                    }`}>Relatorios de Transacoes</h3>
+                    <p className={`text-sm ${
+                        theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}>Grafico de relatorios de transacoes</p>
                 </div>
                 <Select value={filter} onValueChange={setFilter}>
-                    <SelectTrigger className="w-[120px] bg-gray-700 border-gray-600 text-white">
+                    <SelectTrigger className={`w-[120px] ${
+                        theme === 'dark' 
+                            ? 'bg-gray-700 border-gray-600 text-white' 
+                            : 'bg-white border-gray-300 text-gray-900'
+                    }`}>
                         <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-gray-700 border-gray-600">
-                        <SelectItem value="mensal" className="text-white hover:bg-gray-600">Mensal</SelectItem>
-                        <SelectItem value="semanal" className="text-white hover:bg-gray-600">Semanal</SelectItem>
-                        <SelectItem value="anual" className="text-white hover:bg-gray-600">Anual</SelectItem>
+                    <SelectContent className={`${
+                        theme === 'dark' 
+                            ? 'bg-gray-700 border-gray-600' 
+                            : 'bg-white border-gray-200'
+                    }`}>
+                        <SelectItem value="mensal" className={`${
+                            theme === 'dark' 
+                                ? 'text-white hover:bg-gray-600' 
+                                : 'text-gray-900 hover:bg-gray-100'
+                        }`}>Mensal</SelectItem>
+                        <SelectItem value="semanal" className={`${
+                            theme === 'dark' 
+                                ? 'text-white hover:bg-gray-600' 
+                                : 'text-gray-900 hover:bg-gray-100'
+                        }`}>Semanal</SelectItem>
+                        <SelectItem value="anual" className={`${
+                            theme === 'dark' 
+                                ? 'text-white hover:bg-gray-600' 
+                                : 'text-gray-900 hover:bg-gray-100'
+                        }`}>Anual</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
             <div className="mb-3">
-                <span className="text-2xl font-bold text-white">R${data.currentValue}k</span>
+                <span className={`text-2xl font-bold ${
+                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}>R${data.currentValue}k</span>
             </div>
             <div className="h-48">
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={data.data}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                        <CartesianGrid strokeDasharray="3 3" stroke={theme === 'dark' ? '#374151' : '#E5E7EB'} />
                         <XAxis 
                             dataKey="month" 
-                            stroke="#9CA3AF"
-                            tick={{ fontSize: 12 }}
+                            stroke={theme === 'dark' ? '#9CA3AF' : '#6B7280'}
+                            tick={{ fontSize: 12, fill: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}
                         />
                         <YAxis 
-                            stroke="#9CA3AF"
-                            tick={{ fontSize: 12 }}
+                            stroke={theme === 'dark' ? '#9CA3AF' : '#6B7280'}
+                            tick={{ fontSize: 12, fill: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}
                             tickFormatter={(value) => `${value}k`}
                         />
                         <Tooltip content={<CustomTooltip />} />

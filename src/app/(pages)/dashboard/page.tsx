@@ -6,6 +6,7 @@ import TransactionReports from "@/adaptadores/primarios/apresentacao/componentes
 import RecentTransactions from "@/adaptadores/primarios/apresentacao/componentes/RecentTransactions";
 import MyCards from "@/adaptadores/primarios/apresentacao/componentes/MyCards";
 import ExpensesChart from "@/adaptadores/primarios/apresentacao/componentes/ExpensesChart";
+import { useTheme, ThemeProvider } from "@/compartilhado/contextos/ThemeContext";
 
 const mockData = {
     balance: {
@@ -218,21 +219,17 @@ const mockData = {
     }
 };
 
-export default function DashboardPage() {
+function DashboardContent() {
+    const { theme } = useTheme();
+    
     return (
         <WrapperLayout filhos={
             <>
-            <style jsx>{`
-              .dashboard-bg {
-                background-color: #111827; /* gray-900 */
-              }
-              @media (min-width: 768px) {
-                .dashboard-bg {
-                  background-color: lab(5 0.05 -4.54);
-                }
-              }
-            `}</style>
-            <div className="min-h-screen text-white p-3 sm:p-4 lg:p-6 dashboard-bg">
+            <div className={`min-h-screen p-3 sm:p-4 lg:p-6 transition-colors ${
+                theme === 'dark' 
+                    ? 'bg-gray-900 text-white' 
+                    : 'text-gray-900'
+            }`} style={theme === 'light' ? { backgroundColor: 'lab(95 -1.17 -3.31)' } : {}}>
                 <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
 
                     {/* Main Content Grid */}
@@ -262,5 +259,13 @@ export default function DashboardPage() {
             </div>
             </>
         } />
+    );
+}
+
+export default function DashboardPage() {
+    return (
+        <ThemeProvider>
+            <DashboardContent />
+        </ThemeProvider>
     );
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Home, Users, FileText, BarChart3, Bell, MessageSquare, Settings, HelpCircle, X } from "lucide-react";
 import { cn } from "@/compartilhado/utilitarios/utils";
+import { useTheme } from "@/compartilhado/contextos/ThemeContext";
 
 interface PropsBarraLateral {
   estaAberta?: boolean;
@@ -13,6 +14,7 @@ interface PropsBarraLateral {
 export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarraLateral) {
   const router = useRouter();
   const pathname = usePathname();
+  const { theme } = useTheme();
   
   // Determine active item based on current path
   const getActiveItem = () => {
@@ -62,7 +64,11 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
 
       {/* Sidebar */}
       <aside className={cn(
-        "h-screen bg-gray-900 flex flex-col transition-all duration-300 z-50 border-r border-gray-800",
+        `h-screen flex flex-col transition-all duration-300 z-50 ${
+          theme === 'dark' 
+            ? 'bg-gray-900 border-r border-gray-800' 
+            : 'bg-white border-r border-gray-200'
+        }`,
         // Desktop: Always visible and fixed
         "md:fixed md:top-0 md:left-0 md:flex w-64",
         // Mobile: Hidden by default, slides in when open
@@ -73,19 +79,27 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
         {estaAberta && (
           <button
             onClick={aoFechar}
-            className="md:hidden absolute right-4 top-4 z-10 p-2 text-gray-400 hover:bg-gray-800 rounded-lg transition-colors"
+            className={`md:hidden absolute right-4 top-4 z-10 p-2 rounded-lg transition-colors ${
+              theme === 'dark' 
+                ? 'text-gray-400 hover:bg-gray-800' 
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
           >
             <X size={20} />
           </button>
         )}
 
         {/* Logo */}
-        <div className="p-6 border-b border-gray-800 flex-shrink-0">
+        <div className={`p-6 flex-shrink-0 ${
+          theme === 'dark' ? 'border-b border-gray-800' : 'border-b border-gray-200'
+        }`}>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">S</span>
             </div>
-            <span className="text-white text-lg font-semibold">SobraMais</span>
+            <span className={`text-lg font-semibold ${
+              theme === 'dark' ? 'text-white' : 'text-gray-900'
+            }`}>SobraMais</span>
           </div>
         </div>
 
@@ -114,7 +128,9 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                    (item.key === "Home" && pathname === "/dashboard") ||
                    (pathname === "/404" && activeItem === item.key))
                     ? "bg-blue-600 text-white shadow-sm"
-                    : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                    : theme === 'dark' 
+                      ? "text-gray-300 hover:bg-gray-800 hover:text-white"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 )}
               >
                 {item.icon}
@@ -130,7 +146,9 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
         </nav>
 
         {/* Bottom Navigation */}
-        <div className="px-4 py-4 border-t border-gray-800 flex-shrink-0">
+        <div className={`px-4 py-4 flex-shrink-0 ${
+          theme === 'dark' ? 'border-t border-gray-800' : 'border-t border-gray-200'
+        }`}>
           <div className="space-y-1">
             {bottomItems.map((item) => (
               <button
@@ -147,7 +165,9 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
                   activeItem === item.key
                     ? "bg-blue-600 text-white shadow-sm"
-                    : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                    : theme === 'dark' 
+                      ? "text-gray-300 hover:bg-gray-800 hover:text-white"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 )}
               >
                 {item.icon}

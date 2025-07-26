@@ -3,10 +3,12 @@
 import { useState } from "react";
 import BarraNavegacao from "./navBar";
 import BarraLateral from "./sidebar";
+import { useTheme } from "@/compartilhado/contextos/ThemeContext";
 
 
 export default function WrapperLayout({ filhos }: { filhos: React.ReactNode }) {
   const [barraLateralAberta, setBarraLateralAberta] = useState(false);
+  const { theme } = useTheme();
 
   const alternarBarraLateral = () => {
     setBarraLateralAberta(!barraLateralAberta);
@@ -17,7 +19,9 @@ export default function WrapperLayout({ filhos }: { filhos: React.ReactNode }) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className={`flex flex-col min-h-screen transition-colors ${
+      theme === 'dark' ? 'bg-gray-900' : ''
+    }`} style={theme === 'light' ? { backgroundColor: 'lab(95 -1.17 -3.31)' } : {}}>
       {/* Barra de Navegação - Mobile fixo, Desktop flutuante */}
       <BarraNavegacao aoAlternarMenu={alternarBarraLateral} />
       
@@ -26,7 +30,9 @@ export default function WrapperLayout({ filhos }: { filhos: React.ReactNode }) {
         <BarraLateral estaAberta={barraLateralAberta} aoFechar={fecharBarraLateral} />
         
         {/* Conteúdo Principal */}
-        <main className="flex-1 p-3 sm:p-4 lg:p-6 md:ml-64">
+        <main className={`flex-1 p-3 sm:p-4 lg:p-6 md:ml-64 transition-colors ${
+          theme === 'dark' ? 'bg-gray-900' : ''
+        }`} style={theme === 'light' ? { backgroundColor: 'lab(95 -1.17 -3.31)' } : {}}>
           <div>
             {filhos}
           </div>

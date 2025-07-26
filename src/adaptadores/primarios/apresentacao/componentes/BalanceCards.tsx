@@ -2,6 +2,7 @@
 
 import { Card } from "@/compartilhado/ui/card";
 import { MoreVertical, ArrowUp, ArrowDown } from "lucide-react";
+import { useTheme } from "@/compartilhado/contextos/ThemeContext";
 
 interface BalanceData {
     totalBalance: number;
@@ -14,6 +15,8 @@ interface BalanceCardsProps {
 }
 
 export default function BalanceCards({ data }: BalanceCardsProps) {
+    const { theme } = useTheme();
+    
     const cards = [
         {
             title: "Saldo Total",
@@ -46,12 +49,20 @@ export default function BalanceCards({ data }: BalanceCardsProps) {
             {cards.map((card, index) => {
                 const Icon = card.icon;
                 return (
-                    <Card key={index} className="bg-gray-800 border-gray-700 p-3 sm:p-4">
+                    <Card key={index} className={`p-3 sm:p-4 ${
+                        theme === 'dark' 
+                            ? 'bg-gray-800 border-gray-700' 
+                            : 'bg-white border-gray-200 shadow-sm'
+                    }`}>
                         <div className="flex items-center justify-between mb-1">
-                            <span className="text-gray-400 text-sm">{card.title}</span>
-                            <MoreVertical className="h-4 w-4 text-gray-400" />
+                            <span className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+                                {card.title}
+                            </span>
+                            <MoreVertical className={`h-4 w-4 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`} />
                         </div>
-                        <div className="text-lg sm:text-xl font-bold text-white mb-1 break-words">
+                        <div className={`text-lg sm:text-xl font-bold mb-1 break-words ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        }`}>
                             R${card.value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </div>
                         <div className="flex items-center text-sm">
@@ -60,7 +71,9 @@ export default function BalanceCards({ data }: BalanceCardsProps) {
                                 {card.trend}
                             </span>
                         </div>
-                        <span className="text-gray-400 text-xs">{card.period}</span>
+                        <span className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                            {card.period}
+                        </span>
                     </Card>
                 );
             })}

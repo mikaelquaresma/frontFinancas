@@ -20,6 +20,7 @@ import {
 } from "@/compartilhado/ui/select";
 import { Avatar, AvatarFallback } from "@/compartilhado/ui/avatar";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useTheme } from "@/compartilhado/contextos/ThemeContext";
 
 interface Transaction {
     id: number;
@@ -42,6 +43,7 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
     const [currentPage, setCurrentPage] = useState(1);
     const [filter, setFilter] = useState<FilterType>('este-ano');
     const itemsPerPage = 5;
+    const { theme } = useTheme();
 
     const filteredTransactions = useMemo(() => {
         
@@ -89,41 +91,89 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
     };
 
     return (
-        <Card className="bg-gray-800 border-gray-700 p-3 sm:p-4">
+        <Card className={`p-3 sm:p-4 ${
+            theme === 'dark' 
+                ? 'bg-gray-800 border-gray-700' 
+                : 'bg-white border-gray-200 shadow-sm'
+        }`}>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-3 sm:gap-0">
-                <h3 className="text-base sm:text-lg font-semibold text-white">Transacoes Recentes</h3>
+                <h3 className={`text-base sm:text-lg font-semibold ${
+                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}>Transacoes Recentes</h3>
                 <Select value={filter} onValueChange={handleFilterChange}>
-                    <SelectTrigger className="w-full sm:w-[140px] bg-gray-700 border-gray-600 text-white">
+                    <SelectTrigger className={`w-full sm:w-[140px] ${
+                        theme === 'dark' 
+                            ? 'bg-gray-700 border-gray-600 text-white' 
+                            : 'bg-white border-gray-300 text-gray-900'
+                    }`}>
                         <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-gray-700 border-gray-600">
-                        <SelectItem value="hoje" className="text-white hover:bg-gray-600">Hoje</SelectItem>
-                        <SelectItem value="esta-semana" className="text-white hover:bg-gray-600">Esta Semana</SelectItem>
-                        <SelectItem value="este-ano" className="text-white hover:bg-gray-600">Este Ano</SelectItem>
+                    <SelectContent className={`${
+                        theme === 'dark' 
+                            ? 'bg-gray-700 border-gray-600' 
+                            : 'bg-white border-gray-200'
+                    }`}>
+                        <SelectItem value="hoje" className={`${
+                            theme === 'dark' 
+                                ? 'text-white hover:bg-gray-600' 
+                                : 'text-gray-900 hover:bg-gray-100'
+                        }`}>Hoje</SelectItem>
+                        <SelectItem value="esta-semana" className={`${
+                            theme === 'dark' 
+                                ? 'text-white hover:bg-gray-600' 
+                                : 'text-gray-900 hover:bg-gray-100'
+                        }`}>Esta Semana</SelectItem>
+                        <SelectItem value="este-ano" className={`${
+                            theme === 'dark' 
+                                ? 'text-white hover:bg-gray-600' 
+                                : 'text-gray-900 hover:bg-gray-100'
+                        }`}>Este Ano</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
             
-            <div className="rounded-md border border-gray-700">
+            <div className={`rounded-md border ${
+                theme === 'dark' ? 'border-gray-700' : 'border-gray-200'
+            }`}>
                 <Table>
                     <TableHeader>
-                        <TableRow className="border-gray-700 hover:bg-gray-750">
-                            <TableHead className="text-gray-400">Conta</TableHead>
-                            <TableHead className="text-gray-400 hidden sm:table-cell">Valor</TableHead>
-                            <TableHead className="text-gray-400 hidden md:table-cell">Data</TableHead>
-                            <TableHead className="text-gray-400">Status</TableHead>
-                            <TableHead className="text-gray-400 hidden lg:table-cell">Tempo</TableHead>
+                        <TableRow className={`${
+                            theme === 'dark' 
+                                ? 'border-gray-700 hover:bg-gray-750' 
+                                : 'border-gray-200 hover:bg-gray-50'
+                        }`}>
+                            <TableHead className={`${
+                                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                            }`}>Conta</TableHead>
+                            <TableHead className={`hidden sm:table-cell ${
+                                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                            }`}>Valor</TableHead>
+                            <TableHead className={`hidden md:table-cell ${
+                                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                            }`}>Data</TableHead>
+                            <TableHead className={`${
+                                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                            }`}>Status</TableHead>
+                            <TableHead className={`hidden lg:table-cell ${
+                                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                            }`}>Tempo</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {paginatedTransactions.length === 0 ? (
                             <TableRow>
-                                <TableCell colSpan={5} className="text-center text-gray-400 py-8">
+                                <TableCell colSpan={5} className={`text-center py-8 ${
+                                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                                }`}>
                                     Nenhuma transação encontrada para o período selecionado
                                 </TableCell>
                             </TableRow>
                         ) : paginatedTransactions.map((transaction) => (
-                            <TableRow key={transaction.id} className="border-gray-700 hover:bg-gray-750">
+                            <TableRow key={transaction.id} className={`${
+                                theme === 'dark' 
+                                    ? 'border-gray-700 hover:bg-gray-750' 
+                                    : 'border-gray-200 hover:bg-gray-50'
+                            }`}>
                                 <TableCell>
                                     <div className="flex items-center gap-2 sm:gap-3">
                                         <Avatar className="w-6 h-6 sm:w-8 sm:h-8">
@@ -132,8 +182,12 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
                                             </AvatarFallback>
                                         </Avatar>
                                         <div className="min-w-0 flex-1">
-                                            <p className="text-white font-medium text-xs sm:text-sm truncate">{transaction.service}</p>
-                                            <p className="text-gray-400 text-xs truncate">{transaction.account}</p>
+                                            <p className={`font-medium text-xs sm:text-sm truncate ${
+                                                theme === 'dark' ? 'text-white' : 'text-gray-900'
+                                            }`}>{transaction.service}</p>
+                                            <p className={`text-xs truncate ${
+                                                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                                            }`}>{transaction.account}</p>
                                             <div className="sm:hidden flex items-center gap-2 mt-1">
                                                 <span className={`font-semibold text-xs ${transaction.amount < 0 ? 'text-red-400' : 'text-green-400'}`}>
                                                     {transaction.amount < 0 ? '-' : '+'}R${Math.abs(transaction.amount).toLocaleString('pt-BR')}
@@ -147,7 +201,9 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
                                         {transaction.amount < 0 ? '-' : '+'}R${Math.abs(transaction.amount).toLocaleString('pt-BR')}
                                     </span>
                                 </TableCell>
-                                <TableCell className="text-gray-400 text-xs sm:text-sm hidden md:table-cell">
+                                <TableCell className={`text-xs sm:text-sm hidden md:table-cell ${
+                                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                                }`}>
                                     {formatDate(transaction.date)}
                                 </TableCell>
                                 <TableCell>
@@ -159,7 +215,9 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
                                         {transaction.status === 'success' ? 'Sucesso' : 'Pendente'}
                                     </span>
                                 </TableCell>
-                                <TableCell className="text-gray-400 text-xs sm:text-sm hidden lg:table-cell">
+                                <TableCell className={`text-xs sm:text-sm hidden lg:table-cell ${
+                                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                                }`}>
                                     {transaction.time}
                                 </TableCell>
                             </TableRow>
@@ -170,7 +228,9 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
 
             {/* Pagination */}
             <div className="flex items-center justify-between mt-4">
-                <p className="text-sm text-gray-400">
+                <p className={`text-sm ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                }`}>
                     Mostrando {startIndex + 1} a {Math.min(startIndex + itemsPerPage, filteredTransactions.length)} de {filteredTransactions.length} resultados
                 </p>
                 <div className="flex items-center space-x-2">
@@ -179,7 +239,11 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
                         size="sm"
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
-                        className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
+                        className={`${
+                            theme === 'dark' 
+                                ? 'bg-gray-700 border-gray-600 text-white hover:bg-gray-600' 
+                                : 'bg-white border-gray-300 text-gray-900 hover:bg-gray-50'
+                        }`}
                     >
                         <ChevronLeftIcon className="h-4 w-4" />
                     </Button>
@@ -192,7 +256,9 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
                                 onClick={() => setCurrentPage(page)}
                                 className={currentPage === page 
                                     ? "bg-blue-600 text-white hover:bg-blue-700" 
-                                    : "bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
+                                    : theme === 'dark'
+                                        ? "bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
+                                        : "bg-white border-gray-300 text-gray-900 hover:bg-gray-50"
                                 }
                             >
                                 {page}
@@ -204,7 +270,11 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
                         size="sm"
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                         disabled={currentPage === totalPages}
-                        className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
+                        className={`${
+                            theme === 'dark' 
+                                ? 'bg-gray-700 border-gray-600 text-white hover:bg-gray-600' 
+                                : 'bg-white border-gray-300 text-gray-900 hover:bg-gray-50'
+                        }`}
                     >
                         <ChevronRightIcon className="h-4 w-4" />
                     </Button>

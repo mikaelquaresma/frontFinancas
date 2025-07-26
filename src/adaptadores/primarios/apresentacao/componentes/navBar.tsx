@@ -1,10 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { Search, Bell, Menu } from "lucide-react";
+import { Search, Bell, Menu, Sun, Moon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/compartilhado/ui/avatar";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/compartilhado/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
+import { useTheme } from "@/compartilhado/contextos/ThemeContext";
+import { Button } from "@/compartilhado/ui/button";
 
 interface PropsBarraNavegacao {
   aoAlternarMenu?: () => void;
@@ -12,6 +14,7 @@ interface PropsBarraNavegacao {
 
 export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) {
   const router = useRouter();
+  const { theme, toggleTheme } = useTheme();
 
   const handleSair = () => {
     router.push('/');
@@ -22,11 +25,17 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
       {/* Mobile Header */}
       <div className="md:hidden">
         {/* Top Header */}
-        <nav className="w-full bg-gray-900 px-4 py-3 flex items-center justify-between">
+        <nav className={`w-full px-4 py-3 flex items-center justify-between ${
+          theme === 'dark' ? 'bg-gray-900' : 'bg-white border-b border-gray-200'
+        }`}>
           {/* Menu Button */}
           <button 
             onClick={aoAlternarMenu}
-            className="p-2 text-gray-400 hover:bg-gray-800 rounded-lg transition-colors"
+            className={`p-2 rounded-lg transition-colors ${
+              theme === 'dark' 
+                ? 'text-gray-400 hover:bg-gray-800' 
+                : 'text-gray-600 hover:bg-gray-100'
+            }`}
           >
             <Menu className="h-6 w-6" />
           </button>
@@ -36,7 +45,9 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">S</span>
             </div>
-            <span className="text-lg font-semibold text-white">SobraMais</span>
+            <span className={`text-lg font-semibold ${
+              theme === 'dark' ? 'text-white' : 'text-gray-900'
+            }`}>SobraMais</span>
           </div>
 
           {/* User Avatar */}
@@ -49,14 +60,30 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
                 </Avatar>
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48 bg-gray-800 border-gray-700">
-              <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+            <DropdownMenuContent align="end" className={`w-48 ${
+              theme === 'dark' 
+                ? 'bg-gray-800 border-gray-700' 
+                : 'bg-white border-gray-200'
+            }`}>
+              <DropdownMenuItem className={`${
+                theme === 'dark' 
+                  ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}>
                 Perfil
               </DropdownMenuItem>
-              <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+              <DropdownMenuItem className={`${
+                theme === 'dark' 
+                  ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}>
                 Configurações
               </DropdownMenuItem>
-              <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer" onClick={handleSair}>
+              <DropdownMenuItem className={`cursor-pointer ${
+                theme === 'dark' 
+                  ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`} onClick={handleSair}>
                 Sair
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -64,13 +91,21 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
         </nav>
 
         {/* Search Bar Below Header */}
-        <div className="w-full bg-gray-900 px-4 pb-4">
+        <div className={`w-full px-4 pb-4 ${
+          theme === 'dark' ? 'bg-gray-900' : 'bg-white'
+        }`}>
           <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 ${
+              theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+            }`} />
             <input
               type="search"
               placeholder="Pesquisar aqui"
-              className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className={`w-full pl-10 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                theme === 'dark' 
+                  ? 'bg-gray-800 border border-gray-700 text-white placeholder-gray-400' 
+                  : 'bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-500'
+              }`}
             />
           </div>
         </div>
@@ -78,29 +113,59 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
 
       {/* Desktop Navbar */}
       <div className="hidden md:block md:ml-64 px-6 md:px-3 lg:px-6 pt-6">
-        <div className="bg-gray-800/90 backdrop-blur-md border border-gray-700 rounded-2xl px-4 sm:px-6 py-3 shadow-xl">
+        <div className={`backdrop-blur-md rounded-2xl px-4 sm:px-6 py-3 shadow-xl ${
+          theme === 'dark' 
+            ? 'bg-gray-800/90 border border-gray-700' 
+            : 'bg-white/90 border border-gray-200'
+        }`}>
             <div className="flex items-center justify-between w-full">
               {/* Page Title */}
               <div className="flex-1 flex items-center min-w-0">
-                <h1 className="text-lg md:text-xl font-semibold text-white truncate">Início</h1>
+                <h1 className={`text-lg md:text-xl font-semibold truncate ${
+                  theme === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}>Início</h1>
               </div>
 
               {/* Search Bar - Center */}
               <div className="relative flex-1 max-w-xs md:max-w-sm lg:max-w-md mx-3 md:mx-4 lg:mx-8 flex items-center justify-center">
                 <div className="relative w-full">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                  }`} />
                   <input
                     type="search"
                     placeholder="Pesquisar aqui"
-                    className="w-full pl-10 pr-4 py-2 text-sm md:text-base bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={`w-full pl-10 pr-4 py-2 text-sm md:text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      theme === 'dark' 
+                        ? 'bg-gray-700 border border-gray-600 text-white placeholder-gray-400' 
+                        : 'bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-500'
+                    }`}
                   />
                 </div>
               </div>
 
               {/* Right Side Icons */}
               <div className="flex items-center gap-2 md:gap-4 flex-1 justify-end min-w-0">
+                {/* Theme Toggle */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={toggleTheme}
+                  className={`p-2 rounded-lg transition-colors ${
+                    theme === 'dark' 
+                      ? 'text-gray-400 hover:bg-gray-700' 
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                >
+                  {theme === 'dark' ? <Sun className="h-4 w-4 md:h-5 md:w-5" /> : <Moon className="h-4 w-4 md:h-5 md:w-5" />}
+                </Button>
+
                 {/* Notification Bell */}
-                <button className="p-2 text-gray-400 hover:bg-gray-700 rounded-lg transition-colors relative">
+                <button className={`p-2 rounded-lg transition-colors relative ${
+                  theme === 'dark' 
+                    ? 'text-gray-400 hover:bg-gray-700' 
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}>
                   <Bell className="h-4 w-4 md:h-5 md:w-5" />
                   <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
                 </button>
@@ -114,19 +179,39 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
                         <AvatarFallback className="bg-blue-600 text-white text-xs md:text-sm">MM</AvatarFallback>
                       </Avatar>
                       <div className="text-right hidden lg:block min-w-0">
-                        <p className="text-sm font-medium text-white truncate">Marvin McKinney</p>
-                        <p className="text-xs text-gray-400 truncate">Accountant</p>
+                        <p className={`text-sm font-medium truncate ${
+                          theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        }`}>Marvin McKinney</p>
+                        <p className={`text-xs truncate ${
+                          theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                        }`}>Accountant</p>
                       </div>
                     </div>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48 bg-gray-800 border-gray-700">
-                    <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+                  <DropdownMenuContent align="end" className={`w-48 ${
+                    theme === 'dark' 
+                      ? 'bg-gray-800 border-gray-700' 
+                      : 'bg-white border-gray-200'
+                  }`}>
+                    <DropdownMenuItem className={`${
+                      theme === 'dark' 
+                        ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}>
                       Perfil
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+                    <DropdownMenuItem className={`${
+                      theme === 'dark' 
+                        ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}>
                       Configurações
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer" onClick={handleSair}>
+                    <DropdownMenuItem className={`cursor-pointer ${
+                      theme === 'dark' 
+                        ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`} onClick={handleSair}>
                       Sair
                     </DropdownMenuItem>
                   </DropdownMenuContent>
