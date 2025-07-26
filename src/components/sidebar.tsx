@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Home, Users, FileText, BarChart3, Bell, MessageSquare, Settings, HelpCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,6 +11,8 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [activeItem, setActiveItem] = useState("Home");
 
   const menuItems = [
@@ -73,10 +76,18 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             {menuItems.map((item) => (
               <button
                 key={item.key}
-                onClick={() => setActiveItem(item.key)}
+                onClick={() => {
+                  setActiveItem(item.key);
+                  if (item.key === "Home") {
+                    router.push("/dashboard");
+                  } else {
+                    router.push("/404");
+                  }
+                  if (onClose) onClose();
+                }}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
-                  activeItem === item.key
+                  (activeItem === item.key || (item.key === "Home" && pathname === "/dashboard"))
                     ? "bg-blue-600 text-white shadow-sm"
                     : "text-gray-300 hover:bg-gray-800 hover:text-white"
                 )}
@@ -99,7 +110,11 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             {bottomItems.map((item) => (
               <button
                 key={item.key}
-                onClick={() => setActiveItem(item.key)}
+                onClick={() => {
+                  setActiveItem(item.key);
+                  router.push("/404");
+                  if (onClose) onClose();
+                }}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
                   activeItem === item.key
