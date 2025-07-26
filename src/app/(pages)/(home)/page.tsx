@@ -6,11 +6,7 @@ import Link from "next/link";
 import { 
     TrendingUp, 
     Shield, 
-    PiggyBank, 
-    Clock, 
-    Star,
     BarChart3,
-    Smartphone,
     ArrowRight,
     CheckCircle
 } from "lucide-react";
@@ -184,7 +180,7 @@ export default function Home() {
             <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-                        LET'S START SECURING
+                        LET&apos;S START SECURING
                         <span className="block">YOUR MONEY</span>
                     </h2>
                     <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
