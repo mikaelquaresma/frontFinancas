@@ -39,9 +39,9 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
       {/* Sidebar */}
       <aside className={cn(
-        "h-screen bg-gray-900 flex flex-col transition-all duration-300 relative z-50 border-r border-gray-800",
-        // Desktop: Always visible
-        "md:flex w-64",
+        "h-screen bg-gray-900 flex flex-col transition-all duration-300 z-50 border-r border-gray-800",
+        // Desktop: Always visible and fixed
+        "md:fixed md:top-0 md:left-0 md:flex w-64",
         // Mobile: Hidden by default, slides in when open
         "hidden md:flex",
         isOpen && "md:hidden fixed top-0 left-0 w-64 flex"
@@ -57,7 +57,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         )}
 
         {/* Logo */}
-        <div className="p-6 border-b border-gray-800">
+        <div className="p-6 border-b border-gray-800 flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">S</span>
@@ -67,7 +67,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         </div>
 
         {/* Main Navigation */}
-        <nav className="flex-1 px-4 py-6">
+        <nav className="flex-1 px-4 py-6 overflow-y-auto">
           <div className="space-y-1">
             {menuItems.map((item) => (
               <button
@@ -93,7 +93,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         </nav>
 
         {/* Bottom Navigation */}
-        <div className="px-4 py-4 border-t border-gray-800">
+        <div className="px-4 py-4 border-t border-gray-800 flex-shrink-0">
           <div className="space-y-1">
             {bottomItems.map((item) => (
               <button
@@ -114,7 +114,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         </div>
 
         {/* Update Notice */}
-        <div className="p-4">
+        <div className="p-4 flex-shrink-0">
           <div className="bg-blue-600 rounded-lg p-4 text-center">
             <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
               <span className="text-2xl">🚀</span>

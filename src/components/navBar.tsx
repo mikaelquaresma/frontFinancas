@@ -50,10 +50,9 @@ export default function Navbar({ onMenuToggle }: NavbarProps) {
         </button>
       </nav>
 
-      {/* Desktop Floating Navbar */}
-      <div className="hidden md:block fixed top-6 z-50 md:left-64 right-0">
-        <div className="max-w-none mx-6 md:mx-3 lg:mx-6">
-          <div className="bg-gray-800/90 backdrop-blur-md border border-gray-700 rounded-2xl px-4 sm:px-6 py-3 shadow-xl">
+      {/* Desktop Navbar */}
+      <div className="hidden md:block md:ml-64 px-6 md:px-3 lg:px-6 pt-6">
+        <div className="bg-gray-800/90 backdrop-blur-md border border-gray-700 rounded-2xl px-4 sm:px-6 py-3 shadow-xl">
             <div className="flex items-center justify-between w-full">
               {/* Page Title */}
               <div className="flex-1 flex items-center min-w-0">
@@ -109,7 +108,6 @@ export default function Navbar({ onMenuToggle }: NavbarProps) {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </>
   );

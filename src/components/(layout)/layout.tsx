@@ -26,9 +26,8 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         
         {/* Main Content */}
-        <main className="flex-1 p-3 sm:p-4 lg:p-6">
-          {/* Desktop: Add top padding for floating navbar */}
-          <div className="md:pt-16">
+        <main className="flex-1 p-3 sm:p-4 lg:p-6 md:ml-64">
+          <div>
             {children}
           </div>
         </main>
