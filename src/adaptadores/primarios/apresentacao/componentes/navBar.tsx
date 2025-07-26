@@ -4,7 +4,7 @@ import * as React from "react";
 import { Search, Bell, Menu, Sun, Moon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/compartilhado/ui/avatar";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/compartilhado/ui/dropdown-menu";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/compartilhado/contextos/ThemeContext";
 import { Button } from "@/compartilhado/ui/button";
 
@@ -14,10 +14,31 @@ interface PropsBarraNavegacao {
 
 export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) {
   const router = useRouter();
+  const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
 
   const handleSair = () => {
     router.push('/');
+  };
+
+  const getPageTitle = () => {
+    switch (pathname) {
+      case '/dashboard':
+        return 'Início';
+      case '/transferencias':
+        return 'Transferências';
+      default:
+        return 'Início';
+    }
+  };
+
+  const getPageSubtitle = () => {
+    switch (pathname) {
+      case '/transferencias':
+        return 'Gerencie suas transferências e depósitos';
+      default:
+        return null;
+    }
   };
 
   return (
@@ -120,10 +141,15 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
         }`}>
             <div className="flex items-center justify-between w-full">
               {/* Page Title */}
-              <div className="flex-1 flex items-center min-w-0">
+              <div className="flex-1 flex flex-col items-start min-w-0">
                 <h1 className={`text-lg md:text-xl font-semibold truncate ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
-                }`}>Início</h1>
+                }`}>{getPageTitle()}</h1>
+                {getPageSubtitle() && (
+                  <p className={`text-xs md:text-sm truncate ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                  }`}>{getPageSubtitle()}</p>
+                )}
               </div>
 
               {/* Search Bar - Center */}

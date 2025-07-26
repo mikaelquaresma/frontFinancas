@@ -19,6 +19,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
   // Determine active item based on current path
   const getActiveItem = () => {
     if (pathname === "/dashboard") return "Home";
+    if (pathname === "/transferencias") return "Transactions";
     if (pathname === "/404") {
       // Return the last clicked item from localStorage or default
       if (typeof window !== "undefined") {
@@ -117,6 +118,8 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                   }
                   if (item.key === "Home") {
                     router.push("/dashboard");
+                  } else if (item.key === "Transactions") {
+                    router.push("/transferencias");
                   } else {
                     router.push("/404");
                   }
@@ -126,6 +129,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
                   (activeItem === item.key || 
                    (item.key === "Home" && pathname === "/dashboard") ||
+                   (item.key === "Transactions" && pathname === "/transferencias") ||
                    (pathname === "/404" && activeItem === item.key))
                     ? "bg-blue-600 text-white shadow-sm"
                     : theme === 'dark' 
