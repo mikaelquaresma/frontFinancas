@@ -15,7 +15,20 @@ const mockData = {
     },
     transactionReports: {
         currentValue: 750,
-        data: [300, 400, 350, 500, 450, 600, 750, 650, 550, 400, 600, 700]
+        data: [
+            { month: 'Jan', value: 300 },
+            { month: 'Fev', value: 400 },
+            { month: 'Mar', value: 350 },
+            { month: 'Abr', value: 500 },
+            { month: 'Mai', value: 450 },
+            { month: 'Jun', value: 600 },
+            { month: 'Jul', value: 750 },
+            { month: 'Ago', value: 650 },
+            { month: 'Set', value: 550 },
+            { month: 'Out', value: 400 },
+            { month: 'Nov', value: 600 },
+            { month: 'Dez', value: 700 }
+        ]
     },
     recentTransactions: [
         {
@@ -23,7 +36,7 @@ const mockData = {
             service: "Plano Figma Pro",
             account: "Figma",
             amount: -5000,
-            date: "19 Dez, 2024",
+            date: "2025-07-26",
             status: "success",
             time: "5 min atras",
             avatar: "FP"
@@ -33,19 +46,39 @@ const mockData = {
             service: "Plano Youtube Pro",
             account: "Youtube",
             amount: -2500,
-            date: "12 Dez, 2024",
+            date: "2025-07-26",
             status: "pending",
             time: "7 min atras",
             avatar: "YT"
+        },
+        {
+            id: 16,
+            service: "Compra Farmácia",
+            account: "Mastercard",
+            amount: -8750,
+            date: "2025-07-26",
+            status: "success",
+            time: "2 horas atras",
+            avatar: "MC"
+        },
+        {
+            id: 17,
+            service: "Venda Produto",
+            account: "Mercado Pago",
+            amount: 12500,
+            date: "2025-07-26",
+            status: "success",
+            time: "3 horas atras",
+            avatar: "MP"
         },
         {
             id: 3,
             service: "Transferencia PIX",
             account: "Nubank",
             amount: 3200,
-            date: "18 Dez, 2024",
+            date: "2025-07-25",
             status: "success",
-            time: "1 hora atras",
+            time: "1 dia atras",
             avatar: "NB"
         },
         {
@@ -53,9 +86,9 @@ const mockData = {
             service: "Assinatura Netflix",
             account: "Netflix",
             amount: -2999,
-            date: "17 Dez, 2024",
+            date: "2025-07-24",
             status: "success",
-            time: "2 horas atras",
+            time: "2 dias atras",
             avatar: "NF"
         },
         {
@@ -63,10 +96,110 @@ const mockData = {
             service: "Deposito Conta",
             account: "Santander",
             amount: 15000,
-            date: "16 Dez, 2024",
+            date: "2025-07-23",
             status: "pending",
-            time: "1 dia atras",
+            time: "3 dias atras",
             avatar: "ST"
+        },
+        {
+            id: 6,
+            service: "Compra Supermercado",
+            account: "Visa",
+            amount: -1850,
+            date: "2025-07-22",
+            status: "success",
+            time: "4 dias atras",
+            avatar: "VS"
+        },
+        {
+            id: 7,
+            service: "Freelance Projeto",
+            account: "PayPal",
+            amount: 8500,
+            date: "2025-07-21",
+            status: "success",
+            time: "5 dias atras",
+            avatar: "PP"
+        },
+        {
+            id: 8,
+            service: "Aluguel Apartamento",
+            account: "Caixa",
+            amount: -25000,
+            date: "2025-07-20",
+            status: "success",
+            time: "6 dias atras",
+            avatar: "CX"
+        },
+        {
+            id: 9,
+            service: "Spotify Premium",
+            account: "Spotify",
+            amount: -1690,
+            date: "2025-06-26",
+            status: "success",
+            time: "1 mes atras",
+            avatar: "SP"
+        },
+        {
+            id: 10,
+            service: "Dividendos Acoes",
+            account: "XP Investimentos",
+            amount: 4750,
+            date: "2025-06-25",
+            status: "success",
+            time: "1 mes atras",
+            avatar: "XP"
+        },
+        {
+            id: 11,
+            service: "Uber Viagem",
+            account: "Uber",
+            amount: -4350,
+            date: "2025-01-15",
+            status: "success",
+            time: "6 meses atras",
+            avatar: "UB"
+        },
+        {
+            id: 12,
+            service: "Bonus Empresa",
+            account: "Banco do Brasil",
+            amount: 50000,
+            date: "2025-01-10",
+            status: "success",
+            time: "6 meses atras",
+            avatar: "BB"
+        },
+        {
+            id: 13,
+            service: "Amazon Prime",
+            account: "Amazon",
+            amount: -1499,
+            date: "2024-12-26",
+            status: "success",
+            time: "7 meses atras",
+            avatar: "AM"
+        },
+        {
+            id: 14,
+            service: "Investimento CDB",
+            account: "Itau",
+            amount: 75000,
+            date: "2024-12-15",
+            status: "success",
+            time: "7 meses atras",
+            avatar: "IT"
+        },
+        {
+            id: 15,
+            service: "Plano Saude",
+            account: "Unimed",
+            amount: -45000,
+            date: "2024-11-26",
+            status: "success",
+            time: "8 meses atras",
+            avatar: "UN"
         }
     ],
     expenses: {

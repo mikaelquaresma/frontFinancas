@@ -1,37 +1,27 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface TransactionReportsData {
     currentValue: number;
-    data: number[];
+    data: { month: string; value: number }[];
 }
 
 interface TransactionReportsProps {
     data: TransactionReportsData;
 }
 
-function BarChart({ data, highlight }: { data: number[]; highlight: number }) {
-    const maxValue = Math.max(...data);
-    
-    return (
-        <div className="flex items-end justify-between h-32 gap-1">
-            {data.map((value, index) => (
-                <div key={index} className="flex flex-col items-center gap-1 flex-1">
-                    <div 
-                        className={`w-full rounded-t transition-all duration-300 ${
-                            value === highlight ? 'bg-blue-500' : 'bg-gray-600'
-                        }`}
-                        style={{ height: `${(value / maxValue) * 100}%` }}
-                    />
-                    <span className="text-xs text-gray-400">
-                        {['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'][index]}
-                    </span>
-                </div>
-            ))}
-        </div>
-    );
-}
+const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+        return (
+            <div className="bg-gray-800 border border-gray-600 rounded-lg p-2 shadow-lg">
+                <p className="text-white text-sm">{`${label}: R$${payload[0].value}k`}</p>
+            </div>
+        );
+    }
+    return null;
+};
 
 export default function TransactionReports({ data }: TransactionReportsProps) {
     return (
@@ -50,7 +40,32 @@ export default function TransactionReports({ data }: TransactionReportsProps) {
             <div className="mb-4">
                 <span className="text-2xl font-bold text-white">R${data.currentValue}k</span>
             </div>
-            <BarChart data={data.data} highlight={data.currentValue} />
+            <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={data.data}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                        <XAxis 
+                            dataKey="month" 
+                            stroke="#9CA3AF"
+                            tick={{ fontSize: 12 }}
+                        />
+                        <YAxis 
+                            stroke="#9CA3AF"
+                            tick={{ fontSize: 12 }}
+                            tickFormatter={(value) => `${value}k`}
+                        />
+                        <Tooltip content={<CustomTooltip />} />
+                        <Line 
+                            type="monotone" 
+                            dataKey="value" 
+                            stroke="#3B82F6" 
+                            strokeWidth={2}
+                            dot={{ fill: '#3B82F6', strokeWidth: 2, r: 4 }}
+                            activeDot={{ r: 6, stroke: '#3B82F6', strokeWidth: 2 }}
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
+            </div>
         </Card>
     );
 }
