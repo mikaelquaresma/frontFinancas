@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { LayoutDashboard, DollarSign, CreditCard, FileText, Users, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Home, Users, FileText, BarChart3, Bell, MessageSquare, Settings, HelpCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SidebarProps {
@@ -10,15 +10,21 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
-  const [activeItem, setActiveItem] = useState("Balance");
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [activeItem, setActiveItem] = useState("Home");
 
   const menuItems = [
-    { icon: <LayoutDashboard size={20} />, label: "Dashboard", key: "Dashboard" },
-    { icon: <DollarSign size={20} />, label: "Balance", key: "Balance" },
-    { icon: <CreditCard size={20} />, label: "Card Center", key: "Card Center" },
-    { icon: <FileText size={20} />, label: "Invoices", key: "Invoices" },
-    { icon: <Users size={20} />, label: "Transaction Details", key: "Transaction Details" },
+    { icon: <Home size={20} />, label: "Início", key: "Home" },
+    { icon: <Users size={20} />, label: "Contas", key: "Accounts" },
+    { icon: <FileText size={20} />, label: "Transações", key: "Transactions" },
+    { icon: <BarChart3 size={20} />, label: "Relatórios", key: "Reports" },
+    { icon: <FileText size={20} />, label: "Despesas", key: "Expenses" },
+    { icon: <Bell size={20} />, label: "Notificações", key: "Notifications" },
+    { icon: <MessageSquare size={20} />, label: "Mensagens", key: "Messages" },
+  ];
+
+  const bottomItems = [
+    { icon: <HelpCircle size={20} />, label: "Suporte", key: "Support" },
+    { icon: <Settings size={20} />, label: "Configurações", key: "Settings" },
   ];
 
   return (
@@ -26,70 +32,100 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       {/* Mobile Overlay */}
       {isOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={onClose}
         />
       )}
 
       {/* Sidebar */}
       <aside className={cn(
-        "h-screen bg-gray-50 flex flex-col transition-all duration-300 relative z-50",
-        // Desktop: Always visible, collapsible
-        "lg:flex",
-        isCollapsed ? "lg:w-16" : "lg:w-64",
+        "h-screen bg-gray-900 flex flex-col transition-all duration-300 relative z-50 border-r border-gray-800",
+        // Desktop: Always visible
+        "md:flex w-64",
         // Mobile: Hidden by default, slides in when open
-        "hidden lg:flex",
-        isOpen && "lg:hidden fixed top-0 left-0 w-64 flex"
+        "hidden md:flex",
+        isOpen && "md:hidden fixed top-0 left-0 w-64 flex"
       )}>
         {/* Close button for mobile */}
         {isOpen && (
           <button
             onClick={onClose}
-            className="lg:hidden absolute right-4 top-4 z-10 p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            className="md:hidden absolute right-4 top-4 z-10 p-2 text-gray-400 hover:bg-gray-800 rounded-lg transition-colors"
           >
             <X size={20} />
           </button>
         )}
 
-        {/* Toggle Button for Desktop */}
-        <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="hidden lg:block absolute -right-3 top-8 z-10 bg-white border border-gray-200 rounded-full p-1.5 shadow-sm hover:shadow-md transition-shadow"
-        >
-          {isCollapsed ? (
-            <ChevronRight size={16} className="text-gray-600" />
-          ) : (
-            <ChevronLeft size={16} className="text-gray-600" />
-          )}
-        </button>
-
-        <div className={cn("p-6", isOpen && "pt-16", isCollapsed && "lg:px-3")}>
-          {!isCollapsed && (
-            <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
-              MENU
-            </h2>
-          )}
+        {/* Logo */}
+        <div className="p-6 border-b border-gray-800">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">S</span>
+            </div>
+            <span className="text-white text-lg font-semibold">SobraMais</span>
+          </div>
         </div>
 
-        <nav className={cn("flex-1", isCollapsed ? "lg:px-2 px-4" : "px-4")}>
-          {menuItems.map((item) => (
-            <button
-              key={item.key}
-              onClick={() => setActiveItem(item.key)}
-              className={cn(
-                "w-full flex items-center rounded-lg text-left transition-all duration-200 mb-1",
-                isCollapsed ? "lg:gap-0 lg:px-2 lg:py-3 lg:justify-center gap-3 px-3 py-3" : "gap-3 px-3 py-3",
-                activeItem === item.key
-                  ? "bg-gray-900 text-white shadow-sm"
-                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-              )}
-              title={isCollapsed ? item.label : undefined}
-            >
-              {item.icon}
-              {!isCollapsed && <span className="font-medium">{item.label}</span>}
-            </button>
-          ))}
+        {/* Main Navigation */}
+        <nav className="flex-1 px-4 py-6">
+          <div className="space-y-1">
+            {menuItems.map((item) => (
+              <button
+                key={item.key}
+                onClick={() => setActiveItem(item.key)}
+                className={cn(
+                  "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
+                  activeItem === item.key
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                )}
+              >
+                {item.icon}
+                <span className="font-medium">{item.label}</span>
+                {(item.key === "Notifications" || item.key === "Messages") && (
+                  <div className="ml-auto">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
         </nav>
+
+        {/* Bottom Navigation */}
+        <div className="px-4 py-4 border-t border-gray-800">
+          <div className="space-y-1">
+            {bottomItems.map((item) => (
+              <button
+                key={item.key}
+                onClick={() => setActiveItem(item.key)}
+                className={cn(
+                  "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
+                  activeItem === item.key
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                )}
+              >
+                {item.icon}
+                <span className="font-medium">{item.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Update Notice */}
+        <div className="p-4">
+          <div className="bg-blue-600 rounded-lg p-4 text-center">
+            <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+              <span className="text-2xl">🚀</span>
+            </div>
+            <p className="text-white font-medium text-sm mb-1">Nova atualização disponível</p>
+            <p className="text-blue-100 text-xs mb-3">clique para atualizar</p>
+            <button className="bg-white text-blue-600 text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+              Atualizar
+            </button>
+          </div>
+        </div>
       </aside>
     </>
   );

@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SobraMais — Você no comando das finanças
 
-## Getting Started
+Tudo o que você precisa para gerenciar suas finanças, sem pagar mais por isso. Conheça nossos planos e teste gratuitamente por 30 dias!
 
-First, run the development server:
+## Por que escolher o SobraMais?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Baixo Custo:** Preço justo que cabe no seu bolso.
+- **Fácil de usar:** Interface super intuitiva, descomplicando sua gestão financeira.
+- **Simples e completo:** Todas as funcionalidades essenciais para uma boa gestão financeira.
+- **Evolução constante:** Equipe dedicada ao desenvolvimento e melhorias contínuas.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Para quem é o SobraMais?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Empreendedores:** Ideal para MEIs, micro e pequenas empresas de prestação de serviços que querem melhorar a gestão financeira.
+- **Famílias e pessoas físicas:** Controle total dos gastos pessoais e familiares, com praticidade e segurança.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Funcionalidades
 
-## Learn More
+- **Dashboard completo:** Panorama geral das suas finanças.
+- **Lançamentos recorrentes:** Registre despesas e receitas de forma prática.
+- **Fluxo de Caixa:** Visualize claramente a movimentação do seu dinheiro.
+- **Avisos de vencimentos:** Nunca mais perca um pagamento.
+- **Conciliação bancária:** Importe extratos e agilize lançamentos.
+- **Gestão de permissões:** Controle o acesso dos usuários.
+- **Gestão de contas bancárias:** Monitore saldos e transações.
+- **Gestão de faturas:** Gere cobranças profissionais e controle receitas.
+- **Gestão de contatos:** Organize informações de clientes e fornecedores.
+- **E muito mais:** Agenda financeira, multiempresas, relatórios gerenciais, comparativos, centro de custos, categorização, importação de dados, nota fiscal eletrônica (em breve), PWA.
 
-To learn more about Next.js, take a look at the following resources:
+## Nossos números
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **+10.500** importações de outros sistemas
+- **+16.000** usuários cadastrados
+- **+23.000** contas criadas
+- **+328.000** transações realizadas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Depoimentos
 
-## Deploy on Vercel
+> "O SobraMais revolucionou a maneira como gerencio minhas finanças. Interface intuitiva, recursos completos e suporte excelente. Recomendo!"  
+> — Priscila Figueredo, Cafe Mineiro
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> "Ferramenta indispensável para qualquer empreendedor comprometido com o sucesso financeiro."  
+> — Eduardo Sousa, Carménère
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> "Meu assistente financeiro digital! Simples, intuitivo e eficiente."  
+> — Mariane Levandoski, Herbbatta Design
+
+## Planos
+
+- **Empresarial Mensal:** R$39,90/mês — Controle financeiro, gestão de contratos, faturas, API, até 3 usuários, 50GB de disco.
+- **Empresarial Semestral:** R$209,90/semestre — Economize 12%.
+- **Empresarial Anual:** R$399,90/ano — Economize 16%.
+
+Crie sua conta gratuita e teste por 30 dias. Depois, escolha o plano ideal para você ou sua empresa.
+
+## Fique por dentro
+
+Acompanhe nosso blog para novidades, dicas e tutoriais sobre gestão financeira.
+
+---
+
+SobraMais — O sistema de gestão financeira que é o queridinho do Brasil.  
+Ideal para quem busca simplicidade, eficiência e baixo custo na gestão das finanças pessoais ou empresariais.
