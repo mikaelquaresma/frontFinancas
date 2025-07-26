@@ -28,6 +28,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: 'lab(5 0.05 -4.54)' }}
       >
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @media (max-width: 767px) {
+              body {
+                background-color: #111827 !important;
+              }
+            }
+          `
+        }} />
         {children}
       </body>
     </html>

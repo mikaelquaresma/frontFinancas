@@ -58,7 +58,18 @@ const mockData = {
 export default function DashboardPage() {
     return (
         <LayoutWrapper>
-            <div className="min-h-screen text-white p-3 sm:p-4 lg:p-6" style={{ backgroundColor: 'lab(5 0.05 -4.54)' }}>
+            <>
+            <style jsx>{`
+              .dashboard-bg {
+                background-color: #111827; /* gray-900 */
+              }
+              @media (min-width: 768px) {
+                .dashboard-bg {
+                  background-color: lab(5 0.05 -4.54);
+                }
+              }
+            `}</style>
+            <div className="min-h-screen text-white p-3 sm:p-4 lg:p-6 dashboard-bg">
                 <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
 
                     {/* Main Content Grid */}
@@ -86,6 +97,7 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </div>
+            </>
         </LayoutWrapper>
     );
 }

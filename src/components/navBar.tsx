@@ -12,43 +12,62 @@ interface NavbarProps {
 export default function Navbar({ onMenuToggle }: NavbarProps) {
   return (
     <>
-      {/* Mobile Navbar */}
-      <nav className="md:hidden w-full bg-gray-900 border-b border-gray-800 px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between">
-        {/* Mobile Menu Button + Logo */}
-        <div className="flex items-center gap-3">
+      {/* Mobile Header */}
+      <div className="md:hidden">
+        {/* Top Header */}
+        <nav className="w-full bg-gray-900 px-4 py-3 flex items-center justify-between">
+          {/* Menu Button */}
           <button 
             onClick={onMenuToggle}
             className="p-2 text-gray-400 hover:bg-gray-800 rounded-lg transition-colors"
           >
-            <Menu className="h-5 w-5" />
+            <Menu className="h-6 w-6" />
           </button>
           
+          {/* Logo Central */}
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xs sm:text-sm">S</span>
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">S</span>
             </div>
-            <span className="text-base sm:text-lg font-semibold text-white">SobraMais</span>
+            <span className="text-lg font-semibold text-white">SobraMais</span>
           </div>
-        </div>
 
-        {/* Search Bar - Mobile */}
-        <div className="flex-1 max-w-xs sm:max-w-md mx-2 sm:mx-4">
+          {/* User Avatar */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div className="cursor-pointer">
+                <Avatar className="w-8 h-8">
+                  <AvatarImage src="/avatar.jpg" alt="Marvin McKinney" />
+                  <AvatarFallback className="bg-blue-600 text-white text-sm">MM</AvatarFallback>
+                </Avatar>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48 bg-gray-800 border-gray-700">
+              <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+                Perfil
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+                Configurações
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+                Sair
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </nav>
+
+        {/* Search Bar Below Header */}
+        <div className="w-full bg-gray-900 px-4 pb-4">
           <div className="relative w-full">
-            <Search className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-3 w-3 sm:h-4 sm:w-4" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <input
               type="search"
               placeholder="Pesquisar aqui"
-              className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 text-sm sm:text-base bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         </div>
-
-        {/* Notification Bell - Mobile */}
-        <button className="p-2 text-gray-400 hover:bg-gray-800 rounded-lg transition-colors relative">
-          <Bell className="h-5 w-5" />
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-        </button>
-      </nav>
+      </div>
 
       {/* Desktop Navbar */}
       <div className="hidden md:block md:ml-64 px-6 md:px-3 lg:px-6 pt-6">
