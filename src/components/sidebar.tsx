@@ -19,7 +19,10 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname === "/dashboard") return "Home";
     if (pathname === "/404") {
       // Return the last clicked item from localStorage or default
-      return localStorage.getItem("lastClickedMenuItem") || "Home";
+      if (typeof window !== "undefined") {
+        return localStorage.getItem("lastClickedMenuItem") || "Home";
+      }
+      return "Home";
     }
     return "Home";
   };
@@ -95,7 +98,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 onClick={() => {
                   setActiveItem(item.key);
                   // Save the clicked item to localStorage for 404 page
-                  if (item.key !== "Home") {
+                  if (item.key !== "Home" && typeof window !== "undefined") {
                     localStorage.setItem("lastClickedMenuItem", item.key);
                   }
                   if (item.key === "Home") {
@@ -134,7 +137,9 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 key={item.key}
                 onClick={() => {
                   setActiveItem(item.key);
-                  localStorage.setItem("lastClickedMenuItem", item.key);
+                  if (typeof window !== "undefined") {
+                    localStorage.setItem("lastClickedMenuItem", item.key);
+                  }
                   router.push("/404");
                   if (onClose) onClose();
                 }}
