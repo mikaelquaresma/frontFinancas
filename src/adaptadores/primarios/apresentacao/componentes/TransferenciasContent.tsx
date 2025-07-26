@@ -336,7 +336,8 @@ export default function TransferenciasContent() {
                             ? 'bg-gray-800 border-gray-700' 
                             : 'bg-white border-gray-200 shadow-sm'
                     }`}>
-                        <div className="flex justify-between items-center mb-4">
+                        {/* Header for Desktop */}
+                        <div className="hidden sm:flex sm:justify-between sm:items-center mb-4">
                             <h3 className={`text-lg font-semibold ${
                                 theme === 'dark' ? 'text-white' : 'text-gray-900'
                             }`}>Nova Transferência</h3>
@@ -362,6 +363,13 @@ export default function TransferenciasContent() {
                                     Adicionar Transferência
                                 </Button>
                             </div>
+                        </div>
+
+                        {/* Title Only for Mobile */}
+                        <div className="sm:hidden mb-4">
+                            <h3 className={`text-lg font-semibold ${
+                                theme === 'dark' ? 'text-white' : 'text-gray-900'
+                            }`}>Nova Transferência</h3>
                         </div>
                         
                         <form id="transfer-form" onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -448,6 +456,30 @@ export default function TransferenciasContent() {
                                 />
                             </div>
                         </form>
+
+                        {/* Buttons for Mobile */}
+                        <div className="sm:hidden flex items-center gap-2 mt-4">
+                            <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => setShowAddForm(false)}
+                                className={`${
+                                    theme === 'dark' 
+                                        ? 'border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white bg-gray-800' 
+                                        : 'border-gray-300 text-gray-700 hover:bg-gray-100 bg-white'
+                                }`}
+                            >
+                                Cancelar
+                            </Button>
+                            <Button 
+                                type="submit" 
+                                form="transfer-form"
+                                size="sm"
+                                className="bg-blue-600 hover:bg-blue-700 text-white"
+                            >
+                                Adicionar Transferência
+                            </Button>
+                        </div>
                     </Card>
                 )}
 
