@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Home, Users, FileText, BarChart3, Bell, MessageSquare, Settings, HelpCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,23 @@ interface SidebarProps {
 export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const [activeItem, setActiveItem] = useState("Home");
+  
+  // Determine active item based on current path
+  const getActiveItem = () => {
+    if (pathname === "/dashboard") return "Home";
+    if (pathname === "/404") {
+      // Return the last clicked item from localStorage or default
+      return localStorage.getItem("lastClickedMenuItem") || "Home";
+    }
+    return "Home";
+  };
+  
+  const [activeItem, setActiveItem] = useState(getActiveItem());
+  
+  // Update active item when pathname changes
+  useEffect(() => {
+    setActiveItem(getActiveItem());
+  }, [pathname]);
 
   const menuItems = [
     { icon: <Home size={20} />, label: "Início", key: "Home" },
@@ -78,6 +94,10 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 key={item.key}
                 onClick={() => {
                   setActiveItem(item.key);
+                  // Save the clicked item to localStorage for 404 page
+                  if (item.key !== "Home") {
+                    localStorage.setItem("lastClickedMenuItem", item.key);
+                  }
                   if (item.key === "Home") {
                     router.push("/dashboard");
                   } else {
@@ -87,7 +107,9 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 }}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
-                  (activeItem === item.key || (item.key === "Home" && pathname === "/dashboard"))
+                  (activeItem === item.key || 
+                   (item.key === "Home" && pathname === "/dashboard") ||
+                   (pathname === "/404" && activeItem === item.key))
                     ? "bg-blue-600 text-white shadow-sm"
                     : "text-gray-300 hover:bg-gray-800 hover:text-white"
                 )}
@@ -112,6 +134,7 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 key={item.key}
                 onClick={() => {
                   setActiveItem(item.key);
+                  localStorage.setItem("lastClickedMenuItem", item.key);
                   router.push("/404");
                   if (onClose) onClose();
                 }}
