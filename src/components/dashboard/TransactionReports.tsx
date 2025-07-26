@@ -24,7 +24,10 @@ interface TooltipProps {
     active?: boolean;
     payload?: Array<{
         value: number;
-        [key: string]: any;
+        dataKey?: string;
+        color?: string;
+        name?: string;
+        payload?: Record<string, unknown>;
     }>;
     label?: string;
 }
