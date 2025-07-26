@@ -37,6 +37,36 @@ const mockData = {
             status: "pending",
             time: "7 min atras",
             avatar: "YT"
+        },
+        {
+            id: 3,
+            service: "Transferencia PIX",
+            account: "Nubank",
+            amount: 3200,
+            date: "18 Dez, 2024",
+            status: "success",
+            time: "1 hora atras",
+            avatar: "NB"
+        },
+        {
+            id: 4,
+            service: "Assinatura Netflix",
+            account: "Netflix",
+            amount: -2999,
+            date: "17 Dez, 2024",
+            status: "success",
+            time: "2 horas atras",
+            avatar: "NF"
+        },
+        {
+            id: 5,
+            service: "Deposito Conta",
+            account: "Santander",
+            amount: 15000,
+            date: "16 Dez, 2024",
+            status: "pending",
+            time: "1 dia atras",
+            avatar: "ST"
         }
     ],
     expenses: {
