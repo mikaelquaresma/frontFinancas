@@ -4,12 +4,19 @@ import * as React from "react";
 import { Search, Bell, Menu } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/compartilhado/ui/avatar";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/compartilhado/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
 
 interface PropsBarraNavegacao {
   aoAlternarMenu?: () => void;
 }
 
 export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) {
+  const router = useRouter();
+
+  const handleSair = () => {
+    router.push('/');
+  };
+
   return (
     <>
       {/* Mobile Header */}
@@ -49,7 +56,7 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
               <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
                 Configurações
               </DropdownMenuItem>
-              <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+              <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer" onClick={handleSair}>
                 Sair
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -119,7 +126,7 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
                     <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
                       Configurações
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white">
+                    <DropdownMenuItem className="text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer" onClick={handleSair}>
                       Sair
                     </DropdownMenuItem>
                   </DropdownMenuContent>
