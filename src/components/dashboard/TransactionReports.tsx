@@ -20,7 +20,16 @@ interface TransactionReportsProps {
     data: TransactionReportsData;
 }
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+interface TooltipProps {
+    active?: boolean;
+    payload?: Array<{
+        value: number;
+        [key: string]: any;
+    }>;
+    label?: string;
+}
+
+const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
     if (active && payload && payload.length) {
         return (
             <div className="bg-gray-800 border border-gray-600 rounded-lg p-2 shadow-lg">
