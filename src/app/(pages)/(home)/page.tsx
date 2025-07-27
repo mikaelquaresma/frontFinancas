@@ -57,22 +57,22 @@ export default function Home() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
                             <div className="inline-flex items-center bg-blue-600/10 border border-blue-600/20 rounded-full px-4 py-2 mb-6">
-                                <span className="text-blue-400 text-sm font-medium">{t('home.hero.badge')}</span>
+                                <span className="text-blue-400 text-sm font-medium">{t('inicio.hero.selo')}</span>
                             </div>
                             
                             <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                                {t('home.hero.title')}
-                                <span className="block text-blue-400">{t('home.hero.sobra')}</span>
+                                {t('inicio.hero.titulo')}
+                                <span className="block text-blue-400">{t('inicio.hero.sobra')}</span>
                             </h1>
                             
                             <p className="text-xl text-gray-300 mb-8 max-w-lg">
-                                {t('home.hero.description')}
+                                {t('inicio.hero.descricao')}
                             </p>
                             
                             <div className="flex flex-col sm:flex-row gap-4 mb-8">
                                 <Link href="/cadastro">
                                     <Button size="lg" className="bg-primary-custom hover:bg-primary-custom text-white px-8">
-                                        {t('home.hero.cta')}
+                                        {t('inicio.hero.botao')}
                                         <ArrowRight className="ml-2 h-5 w-5" />
                                     </Button>
                                 </Link>
@@ -140,8 +140,8 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                            {t('home.features.title')}
-                            <span className="block text-primary-custom">{t('home.features.subtitle')}</span>
+                            {t('inicio.recursos.titulo')}
+                            <span className="block text-primary-custom">{t('inicio.recursos.subtitulo')}</span>
                         </h2>
                     </div>
 
@@ -150,9 +150,9 @@ export default function Home() {
                             <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-6">
                                 <Shield className="h-6 w-6 text-primary-custom" />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.features.security.title')}</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('inicio.recursos.seguranca.titulo')}</h3>
                             <p className="text-gray-600">
-                                {t('home.features.security.desc')}
+                                {t('inicio.recursos.seguranca.descricao')}
                             </p>
                         </Card>
 
@@ -160,9 +160,9 @@ export default function Home() {
                             <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-6">
                                 <BarChart3 className="h-6 w-6 text-primary-custom" />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.features.analytics.title')}</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('inicio.recursos.analise.titulo')}</h3>
                             <p className="text-gray-600">
-                                {t('home.features.analytics.desc')}
+                                {t('inicio.recursos.analise.descricao')}
                             </p>
                         </Card>
 
@@ -170,9 +170,9 @@ export default function Home() {
                             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
                                 <TrendingUp className="h-6 w-6 text-purple-600" />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.features.growth.title')}</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('inicio.recursos.crescimento.titulo')}</h3>
                             <p className="text-gray-600">
-                                {t('home.features.growth.desc')}
+                                {t('inicio.recursos.crescimento.descricao')}
                             </p>
                         </Card>
                     </div>

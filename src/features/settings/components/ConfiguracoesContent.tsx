@@ -36,12 +36,12 @@ export default function ConfiguracoesContent() {
     const [isSheetOpen, setIsSheetOpen] = useState(false);
 
     const menuItems = [
-        { icon: <User size={20} />, label: t("settings.profile"), key: "Perfil" },
-        { icon: <Palette size={20} />, label: t("settings.appearance"), key: "Aparencia" },
-        { icon: <CreditCard size={20} />, label: t("settings.account"), key: "Conta" },
-        { icon: <Shield size={20} />, label: t("settings.privacy"), key: "Privacidade" },
-        { icon: <DollarSign size={20} />, label: t("settings.billing"), key: "Cobranca" },
-        { icon: <Plug size={20} />, label: t("settings.connectors"), key: "Conectores" },
+        { icon: <User size={20} />, label: t("config.perfil"), key: "Perfil" },
+        { icon: <Palette size={20} />, label: t("config.aparencia"), key: "Aparencia" },
+        { icon: <CreditCard size={20} />, label: t("config.conta"), key: "Conta" },
+        { icon: <Shield size={20} />, label: t("config.privacidade"), key: "Privacidade" },
+        { icon: <DollarSign size={20} />, label: t("config.cobranca"), key: "Cobranca" },
+        { icon: <Plug size={20} />, label: t("config.conectores"), key: "Conectores" },
         { icon: <Code size={20} />, label: "Claude Code", key: "ClaudeCode" },
     ];
 
@@ -129,15 +129,15 @@ export default function ConfiguracoesContent() {
                         }`}>
                             <h3 className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 ${
                                 theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>{t("settings.theme")}</h3>
+                            }`}>{t("config.tema")}</h3>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                 <div>
                                     <Label htmlFor="theme" className={`text-sm sm:text-base ${
                                         theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                    }`}>{t("settings.darkMode")}</Label>
+                                    }`}>{t("config.modo.escuro")}</Label>
                                     <p className={`text-xs sm:text-sm mt-1 ${
                                         theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                                    }`}>{t("settings.darkModeDesc")}</p>
+                                    }`}>{t("config.modo.escuro.descricao")}</p>
                                 </div>
                                 <input 
                                     type="checkbox" 
@@ -155,19 +155,19 @@ export default function ConfiguracoesContent() {
                         }`}>
                             <h3 className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 ${
                                 theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>{t("settings.primaryColor")}</h3>
+                            }`}>{t("config.cor.primaria")}</h3>
                             <div>
                                 <Label className={`text-sm sm:text-base ${
                                     theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                }`}>{t("settings.primaryColorDesc")}</Label>
+                                }`}>{t("config.cor.primaria.descricao")}</Label>
                                 <div className="flex flex-wrap gap-3 mt-3">
                                     {[
-                                        { name: t('colors.blue'), color: '#0060d1' as const },
-                                        { name: t('colors.purple'), color: '#5b1695' as const },
-                                        { name: t('colors.pink'), color: '#ae1877' as const },
-                                        { name: t('colors.cyan'), color: '#18a3ae' as const },
-                                        { name: t('colors.green'), color: '#43ae18' as const },
-                                        { name: t('colors.black'), color: '#000' as const }
+                                        { name: t('cores.azul'), color: '#0060d1' as const },
+                                        { name: t('cores.roxo'), color: '#5b1695' as const },
+                                        { name: t('cores.rosa'), color: '#ae1877' as const },
+                                        { name: t('cores.ciano'), color: '#18a3ae' as const },
+                                        { name: t('cores.verde'), color: '#43ae18' as const },
+                                        { name: t('cores.preto'), color: '#000' as const }
                                     ].map((colorOption) => (
                                         <button
                                             key={colorOption.name}
@@ -212,11 +212,11 @@ export default function ConfiguracoesContent() {
                         }`}>
                             <h3 className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 ${
                                 theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>{t("settings.language")}</h3>
+                            }`}>{t("config.idioma")}</h3>
                             <div>
                                 <Label className={`text-sm sm:text-base ${
                                     theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                }`}>{t("settings.languageDesc")}</Label>
+                                }`}>{t("config.idioma.descricao")}</Label>
                                 <Select value={language} onValueChange={setLanguage}>
                                     <SelectTrigger className={`w-full mt-2 ${
                                         theme === 'dark' 
@@ -234,17 +234,17 @@ export default function ConfiguracoesContent() {
                                             theme === 'dark' 
                                                 ? 'text-white hover:bg-gray-600' 
                                                 : 'text-gray-900 hover:bg-gray-100'
-                                        }`}>{t("lang.pt-br")}</SelectItem>
+                                        }`}>{t("idioma.pt-br")}</SelectItem>
                                         <SelectItem value="en" className={`${
                                             theme === 'dark' 
                                                 ? 'text-white hover:bg-gray-600' 
                                                 : 'text-gray-900 hover:bg-gray-100'
-                                        }`}>{t("lang.en")}</SelectItem>
+                                        }`}>{t("idioma.en")}</SelectItem>
                                         <SelectItem value="es" className={`${
                                             theme === 'dark' 
                                                 ? 'text-white hover:bg-gray-600' 
                                                 : 'text-gray-900 hover:bg-gray-100'
-                                        }`}>{t("lang.es")}</SelectItem>
+                                        }`}>{t("idioma.es")}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>

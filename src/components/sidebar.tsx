@@ -38,22 +38,23 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
   
   // Update active item when pathname changes
   useEffect(() => {
-    setActiveItem(getActiveItem());
+    const activeItem = getActiveItem();
+    setActiveItem(activeItem);
   }, [pathname]);
 
   const menuItems = [
-    { icon: <Home size={20} />, label: t("sidebar.home"), key: "Home" },
-    { icon: <Users size={20} />, label: t("sidebar.accounts"), key: "Accounts" },
-    { icon: <FileText size={20} />, label: t("sidebar.transactions"), key: "Transactions" },
-    { icon: <BarChart3 size={20} />, label: t("sidebar.reports"), key: "Reports" },
-    { icon: <FileText size={20} />, label: t("sidebar.expenses"), key: "Expenses" },
-    { icon: <Bell size={20} />, label: t("sidebar.notifications"), key: "Notifications" },
-    { icon: <MessageSquare size={20} />, label: t("sidebar.messages"), key: "Messages" },
+    { icon: <Home size={20} />, label: t("menu.inicio"), key: "Home" },
+    { icon: <Users size={20} />, label: t("menu.contas"), key: "Accounts" },
+    { icon: <FileText size={20} />, label: t("menu.transacoes"), key: "Transactions" },
+    { icon: <BarChart3 size={20} />, label: t("menu.relatorios"), key: "Reports" },
+    { icon: <FileText size={20} />, label: t("menu.despesas"), key: "Expenses" },
+    { icon: <Bell size={20} />, label: t("menu.notificacoes"), key: "Notifications" },
+    { icon: <MessageSquare size={20} />, label: t("menu.mensagens"), key: "Messages" },
   ];
 
   const bottomItems = [
-    { icon: <HelpCircle size={20} />, label: t("sidebar.help"), key: "Support" },
-    { icon: <Settings size={20} />, label: t("sidebar.settings"), key: "Settings" },
+    { icon: <HelpCircle size={20} />, label: t("menu.ajuda"), key: "Support" },
+    { icon: <Settings size={20} />, label: t("menu.configuracoes"), key: "Settings" },
   ];
 
   return (

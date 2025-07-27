@@ -26,26 +26,26 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
   const getPageTitle = () => {
     switch (pathname) {
       case '/dashboard':
-        return t('navbar.home');
+        return t('nav.inicio');
       case '/transferencias':
-        return t('navbar.transfers');
+        return t('nav.transferencias');
       case '/relatorios':
-        return t('navbar.reports');
+        return t('nav.relatorios');
       case '/configuracoes':
-        return t('navbar.settings');
+        return t('nav.configuracoes');
       default:
-        return t('navbar.home');
+        return t('nav.inicio');
     }
   };
 
   const getPageSubtitle = () => {
     switch (pathname) {
       case '/transferencias':
-        return t('navbar.transfers.subtitle');
+        return t('nav.transferencias.subtitulo');
       case '/relatorios':
-        return t('navbar.reports.subtitle');
+        return t('nav.relatorios.subtitulo');
       case '/configuracoes':
-        return t('navbar.settings.subtitle');
+        return t('nav.configuracoes.subtitulo');
       default:
         return null;
     }
