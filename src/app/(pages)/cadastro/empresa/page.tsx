@@ -1,12 +1,12 @@
 
 "use client";
 
-import NavbarLogoCenter from "@/adaptadores/primarios/apresentacao/componentes/navBarLogoCenter";
-import { Button } from "@/compartilhado/ui/button";
-import { Card, CardHeader, CardTitle } from "@/compartilhado/ui/card";
-import { Input } from "@/compartilhado/ui/input";
-import { Label } from "@/compartilhado/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/compartilhado/ui/select";
+import NavbarLogoCenter from "@/components/navBarLogoCenter";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Link from "next/link";
 
 export default function CompanyDataForm() {

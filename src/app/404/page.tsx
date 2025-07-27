@@ -1,11 +1,11 @@
 "use client";
 
-import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
-import { Button } from "@/compartilhado/ui/button";
-import { Card } from "@/compartilhado/ui/card";
+import WrapperLayout from "@/components/layout";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Home, AlertTriangle } from "lucide-react";
 import Link from "next/link";
-import { ThemeProvider } from "@/compartilhado/contextos/ThemeContext";
+import { ThemeProvider } from "@/stores/ThemeContext";
 
 export default function Custom404() {
     return (

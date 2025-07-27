@@ -1,8 +1,8 @@
 "use client";
 
-import { ThemeProvider } from "@/compartilhado/contextos/ThemeContext";
-import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
-import TransferenciasContent from "@/adaptadores/primarios/apresentacao/componentes/TransferenciasContent";
+import { ThemeProvider } from "@/stores/ThemeContext";
+import WrapperLayout from "@/components/layout";
+import TransferenciasContent from "@/features/transfers/components/TransferenciasContent";
 
 export default function TransferenciasPage() {
     return (

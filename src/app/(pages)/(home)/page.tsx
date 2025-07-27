@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/compartilhado/ui/button";
-import { Card } from "@/compartilhado/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { 
     TrendingUp, 

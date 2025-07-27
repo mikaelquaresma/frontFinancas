@@ -1,8 +1,8 @@
 "use client";
 
-import { ThemeProvider } from "@/compartilhado/contextos/ThemeContext";
-import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
-import ConfiguracoesContent from "@/adaptadores/primarios/apresentacao/componentes/ConfiguracoesContent";
+import { ThemeProvider } from "@/stores/ThemeContext";
+import WrapperLayout from "@/components/layout";
+import ConfiguracoesContent from "@/features/settings/components/ConfiguracoesContent";
 
 export default function ConfiguracoesPage() {
     return (

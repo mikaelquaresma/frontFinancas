@@ -3,10 +3,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/compartilhado/ui/card";
-import { Button } from "@/compartilhado/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import NavbarLogoCenter from "@/adaptadores/primarios/apresentacao/componentes/navBarLogoCenter";
+import NavbarLogoCenter from "@/components/navBarLogoCenter";
 
 
 const CadastroCard: React.FC<{ children: React.ReactNode }> = ({ children }) => {

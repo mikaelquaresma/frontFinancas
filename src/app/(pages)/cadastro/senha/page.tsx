@@ -3,14 +3,14 @@
 "use client";
 
 import React, { Suspense } from "react";
-import { Button } from "@/compartilhado/ui/button";
-import { Card, CardHeader, CardTitle } from "@/compartilhado/ui/card";
-import { Input } from "@/compartilhado/ui/input";
-import { Label } from "@/compartilhado/ui/label";
-import { Checkbox } from "@/compartilhado/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import NavbarLogoCenter from "@/adaptadores/primarios/apresentacao/componentes/navBarLogoCenter";
+import NavbarLogoCenter from "@/components/navBarLogoCenter";
 
 function PasswordFormInner() {
     const router = useRouter();

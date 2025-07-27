@@ -1,6 +1,6 @@
 "use client";
 
-import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
+import WrapperLayout from "@/components/layout";
 import { useParams } from "next/navigation";
 
 export default function DashboardPage() {

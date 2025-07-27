@@ -1,12 +1,12 @@
 "use client";
 
-import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
-import BalanceCards from "@/adaptadores/primarios/apresentacao/componentes/BalanceCards";
-import TransactionReports from "@/adaptadores/primarios/apresentacao/componentes/TransactionReports";
-import RecentTransactions from "@/adaptadores/primarios/apresentacao/componentes/RecentTransactions";
-import MyCards from "@/adaptadores/primarios/apresentacao/componentes/MyCards";
-import ExpensesChart from "@/adaptadores/primarios/apresentacao/componentes/ExpensesChart";
-import { useTheme, ThemeProvider } from "@/compartilhado/contextos/ThemeContext";
+import WrapperLayout from "@/components/layout";
+import BalanceCards from "@/features/dashboard/components/BalanceCards";
+import TransactionReports from "@/features/dashboard/components/TransactionReports";
+import RecentTransactions from "@/features/dashboard/components/RecentTransactions";
+import MyCards from "@/features/dashboard/components/MyCards";
+import ExpensesChart from "@/features/dashboard/components/ExpensesChart";
+import { useTheme, ThemeProvider } from "@/stores/ThemeContext";
 
 const mockData = {
     balance: {

@@ -1,8 +1,8 @@
 "use client";
 
-import { ThemeProvider } from "@/compartilhado/contextos/ThemeContext";
-import WrapperLayout from "@/adaptadores/primarios/apresentacao/componentes/layout";
-import RelatoriosContent from "@/adaptadores/primarios/apresentacao/componentes/RelatoriosContent";
+import { ThemeProvider } from "@/stores/ThemeContext";
+import WrapperLayout from "@/components/layout";
+import RelatoriosContent from "@/features/reports/components/RelatoriosContent";
 
 export default function RelatoriosPage() {
     return (

@@ -2,13 +2,13 @@
 "use client";
 
 
-import NavbarLogoCenter from "@/adaptadores/primarios/apresentacao/componentes/navBarLogoCenter";
-import { Button } from "@/compartilhado/ui/button";
-import { Card, CardHeader, CardTitle } from "@/compartilhado/ui/card";
-import { Input } from "@/compartilhado/ui/input";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/compartilhado/ui/select";
+import NavbarLogoCenter from "@/components/navBarLogoCenter";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import Link from "next/link";
-import { Label } from "@/compartilhado/ui/label";
+import { Label } from "@/components/ui/label";
 
 export default function PersonalDataForm() {
     return (  
