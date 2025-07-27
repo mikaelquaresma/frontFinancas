@@ -56,7 +56,7 @@ function Calendar({
         ),
         day_range_end: "day-range-end",
         day_selected: cn(
-          "bg-blue-600 text-white hover:bg-blue-700 focus:bg-blue-600 focus:text-white"
+          "bg-primary-custom text-white hover:bg-primary-custom focus:bg-primary-custom focus:text-white"
         ),
         day_today: cn(
           isDark 

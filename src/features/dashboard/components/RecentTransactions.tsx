@@ -177,7 +177,7 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
                                 <TableCell>
                                     <div className="flex items-center gap-2 sm:gap-3">
                                         <Avatar className="w-6 h-6 sm:w-8 sm:h-8">
-                                            <AvatarFallback className="bg-blue-600 text-white text-xs">
+                                            <AvatarFallback className="bg-primary-custom text-white text-xs">
                                                 {transaction.avatar}
                                             </AvatarFallback>
                                         </Avatar>
@@ -255,7 +255,7 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
                                 size="sm"
                                 onClick={() => setCurrentPage(page)}
                                 className={currentPage === page 
-                                    ? "bg-blue-600 text-white hover:bg-blue-700" 
+                                    ? "bg-primary-custom text-white hover:bg-primary-custom" 
                                     : theme === 'dark'
                                         ? "bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
                                         : "bg-white border-gray-300 text-gray-900 hover:bg-gray-50"

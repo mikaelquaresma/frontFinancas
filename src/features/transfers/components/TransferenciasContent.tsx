@@ -193,8 +193,8 @@ export default function TransferenciasContent() {
                                     theme === 'dark' ? 'text-white' : 'text-gray-900'
                                 }`}>R$ 10.950</p>
                             </div>
-                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <ArrowUpDown className="h-6 w-6 text-blue-600" />
+                            <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <ArrowUpDown className="h-6 w-6 text-primary-custom" />
                             </div>
                         </div>
                     </Card>
@@ -320,7 +320,7 @@ export default function TransferenciasContent() {
                             
                             <Button 
                                 onClick={() => setShowAddForm(true)}
-                                className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2 whitespace-nowrap"
+                                className="bg-primary-custom hover:bg-primary-custom text-white flex items-center gap-2 whitespace-nowrap"
                             >
                                 <Plus className="h-4 w-4" />
                                 Nova Transferência
@@ -358,7 +358,7 @@ export default function TransferenciasContent() {
                                     type="submit" 
                                     form="transfer-form"
                                     size="sm"
-                                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                                    className="bg-primary-custom hover:bg-primary-custom text-white"
                                 >
                                     Adicionar Transferência
                                 </Button>
@@ -475,7 +475,7 @@ export default function TransferenciasContent() {
                                 type="submit" 
                                 form="transfer-form"
                                 size="sm"
-                                className="bg-blue-600 hover:bg-blue-700 text-white"
+                                className="bg-primary-custom hover:bg-primary-custom text-white"
                             >
                                 Adicionar Transferência
                             </Button>
@@ -538,7 +538,7 @@ export default function TransferenciasContent() {
                                         <TableCell>
                                             <div className="flex items-center gap-3">
                                                 <Avatar className="w-8 h-8">
-                                                    <AvatarFallback className="bg-blue-600 text-white text-xs">
+                                                    <AvatarFallback className="bg-primary-custom text-white text-xs">
                                                         {transferencia.avatar}
                                                     </AvatarFallback>
                                                 </Avatar>

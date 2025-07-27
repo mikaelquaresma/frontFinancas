@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useTranslation } from "@/hooks/useTranslation";
 import Link from "next/link";
 import { 
     TrendingUp, 
@@ -12,6 +13,8 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+    const { t } = useTranslation();
+    
     return (
         <div className="min-h-screen bg-white">
             {/* Header/Navbar */}
@@ -19,7 +22,7 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <div className="flex items-center">
-                            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-primary-custom rounded-lg flex items-center justify-center">
                                 <span className="text-white font-bold text-sm">S</span>
                             </div>
                             <span className="ml-2 text-xl font-bold text-gray-900">SobraMais</span>
@@ -39,7 +42,7 @@ export default function Home() {
                                 </Button>
                             </Link>
                             <Link href="/cadastro">
-                                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                                <Button className="bg-primary-custom hover:bg-primary-custom text-white">
                                     Começar Grátis
                                 </Button>
                             </Link>
@@ -54,22 +57,22 @@ export default function Home() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
                             <div className="inline-flex items-center bg-blue-600/10 border border-blue-600/20 rounded-full px-4 py-2 mb-6">
-                                <span className="text-blue-400 text-sm font-medium">✨ Melhor Solução Financeira</span>
+                                <span className="text-blue-400 text-sm font-medium">{t('home.hero.badge')}</span>
                             </div>
                             
                             <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                                SOBRA MAIS
-                                <span className="block text-blue-400">SOBRA MELHOR</span>
+                                {t('home.hero.title')}
+                                <span className="block text-blue-400">{t('home.hero.sobra')}</span>
                             </h1>
                             
                             <p className="text-xl text-gray-300 mb-8 max-w-lg">
-                                Controle suas finanças de forma inteligente e faça seu dinheiro render mais com nossa plataforma completa.
+                                {t('home.hero.description')}
                             </p>
                             
                             <div className="flex flex-col sm:flex-row gap-4 mb-8">
                                 <Link href="/cadastro">
-                                    <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8">
-                                        Começar Agora
+                                    <Button size="lg" className="bg-primary-custom hover:bg-primary-custom text-white px-8">
+                                        {t('home.hero.cta')}
                                         <ArrowRight className="ml-2 h-5 w-5" />
                                     </Button>
                                 </Link>
@@ -99,8 +102,8 @@ export default function Home() {
                                             <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                                             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                                         </div>
-                                        <div className="flex items-center space-x-2 text-blue-600">
-                                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                        <div className="flex items-center space-x-2 text-primary-custom">
+                                            <div className="w-2 h-2 bg-primary-custom rounded-full"></div>
                                             <span className="text-sm font-medium">4.9</span>
                                             <span className="text-xs text-gray-500">ROI</span>
                                         </div>
@@ -112,7 +115,7 @@ export default function Home() {
                                             <span className="font-bold text-gray-900">R$ 24.847,50</span>
                                         </div>
                                         <div className="w-full bg-gray-200 rounded-full h-2">
-                                            <div className="bg-blue-500 h-2 rounded-full" style={{width: '75%'}}></div>
+                                            <div className="bg-primary-custom h-2 rounded-full" style={{width: '75%'}}></div>
                                         </div>
                                         <div className="grid grid-cols-2 gap-4 pt-4">
                                             <div className="text-center">
@@ -120,7 +123,7 @@ export default function Home() {
                                                 <div className="text-xs text-gray-500">Este mês</div>
                                             </div>
                                             <div className="text-center">
-                                                <div className="text-2xl font-bold text-blue-600">R$ 3.2k</div>
+                                                <div className="text-2xl font-bold text-primary-custom">R$ 3.2k</div>
                                                 <div className="text-xs text-gray-500">Economia</div>
                                             </div>
                                         </div>
@@ -137,29 +140,29 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                            PROTECT YOUR INVESTMENTS WITH
-                            <span className="block text-blue-600">EXCITING PRECISION</span>
+                            {t('home.features.title')}
+                            <span className="block text-primary-custom">{t('home.features.subtitle')}</span>
                         </h2>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         <Card className="p-8 bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
-                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                                <Shield className="h-6 w-6 text-blue-600" />
+                            <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-6">
+                                <Shield className="h-6 w-6 text-primary-custom" />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">Segurança Máxima</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.features.security.title')}</h3>
                             <p className="text-gray-600">
-                                Protegemos seus dados com criptografia de nível bancário e autenticação em duas etapas.
+                                {t('home.features.security.desc')}
                             </p>
                         </Card>
 
                         <Card className="p-8 bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
-                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                                <BarChart3 className="h-6 w-6 text-blue-600" />
+                            <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-6">
+                                <BarChart3 className="h-6 w-6 text-primary-custom" />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">Análise Inteligente</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.features.analytics.title')}</h3>
                             <p className="text-gray-600">
-                                Relatórios detalhados e insights que ajudam você a tomar decisões financeiras inteligentes.
+                                {t('home.features.analytics.desc')}
                             </p>
                         </Card>
 
@@ -167,9 +170,9 @@ export default function Home() {
                             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
                                 <TrendingUp className="h-6 w-6 text-purple-600" />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">Crescimento Real</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.features.growth.title')}</h3>
                             <p className="text-gray-600">
-                                Veja seu dinheiro crescer com nossas estratégias personalizadas de investimento.
+                                {t('home.features.growth.desc')}
                             </p>
                         </Card>
                     </div>
@@ -177,7 +180,7 @@ export default function Home() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800">
+            <section className="py-20 bg-gradient-to-r from-primary-custom to-blue-800">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
                         LET&apos;S START SECURING
@@ -188,7 +191,7 @@ export default function Home() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/cadastro">
-                            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8">
+                            <Button size="lg" className="bg-white text-primary-custom hover:bg-gray-100 px-8">
                                 Começar Gratuitamente
                             </Button>
                         </Link>
@@ -207,7 +210,7 @@ export default function Home() {
                     <div className="text-center mb-16">
                         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                             GET TO KNOW MORE
-                            <span className="block text-blue-600">ABOUT MONEYHUB</span>
+                            <span className="block text-primary-custom">ABOUT MONEYHUB</span>
                         </h2>
                     </div>
 
@@ -238,7 +241,7 @@ export default function Home() {
                     <div className="grid md:grid-cols-4 gap-8">
                         <div>
                             <div className="flex items-center mb-4">
-                                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <div className="w-8 h-8 bg-primary-custom rounded-lg flex items-center justify-center">
                                     <span className="text-white font-bold text-sm">S</span>
                                 </div>
                                 <span className="ml-2 text-xl font-bold">SobraMais</span>

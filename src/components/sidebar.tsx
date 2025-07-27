@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { Home, Users, FileText, BarChart3, Bell, MessageSquare, Settings, HelpCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/stores/ThemeContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface PropsBarraLateral {
   estaAberta?: boolean;
@@ -15,6 +16,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
   const router = useRouter();
   const pathname = usePathname();
   const { theme } = useTheme();
+  const { t } = useTranslation();
   
   // Determine active item based on current path
   const getActiveItem = () => {
@@ -40,18 +42,18 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
   }, [pathname]);
 
   const menuItems = [
-    { icon: <Home size={20} />, label: "Início", key: "Home" },
-    { icon: <Users size={20} />, label: "Contas", key: "Accounts" },
-    { icon: <FileText size={20} />, label: "Transações", key: "Transactions" },
-    { icon: <BarChart3 size={20} />, label: "Relatórios", key: "Reports" },
-    { icon: <FileText size={20} />, label: "Despesas", key: "Expenses" },
-    { icon: <Bell size={20} />, label: "Notificações", key: "Notifications" },
-    { icon: <MessageSquare size={20} />, label: "Mensagens", key: "Messages" },
+    { icon: <Home size={20} />, label: t("sidebar.home"), key: "Home" },
+    { icon: <Users size={20} />, label: t("sidebar.accounts"), key: "Accounts" },
+    { icon: <FileText size={20} />, label: t("sidebar.transactions"), key: "Transactions" },
+    { icon: <BarChart3 size={20} />, label: t("sidebar.reports"), key: "Reports" },
+    { icon: <FileText size={20} />, label: t("sidebar.expenses"), key: "Expenses" },
+    { icon: <Bell size={20} />, label: t("sidebar.notifications"), key: "Notifications" },
+    { icon: <MessageSquare size={20} />, label: t("sidebar.messages"), key: "Messages" },
   ];
 
   const bottomItems = [
-    { icon: <HelpCircle size={20} />, label: "Suporte", key: "Support" },
-    { icon: <Settings size={20} />, label: "Configurações", key: "Settings" },
+    { icon: <HelpCircle size={20} />, label: t("sidebar.help"), key: "Support" },
+    { icon: <Settings size={20} />, label: t("sidebar.settings"), key: "Settings" },
   ];
 
   return (
@@ -97,7 +99,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
           theme === 'dark' ? 'border-b border-gray-800' : 'border-b border-gray-200'
         }`}>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-primary-custom rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">S</span>
             </div>
             <span className={`text-lg font-semibold ${
@@ -137,7 +139,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                    (item.key === "Reports" && pathname === "/relatorios") ||
                    (item.key === "Settings" && pathname === "/configuracoes") ||
                    (pathname === "/404" && activeItem === item.key))
-                    ? "bg-blue-600 text-white shadow-sm"
+                    ? "bg-primary-custom text-white shadow-sm"
                     : theme === 'dark' 
                       ? "text-gray-300 hover:bg-gray-800 hover:text-white"
                       : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -178,7 +180,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
                   activeItem === item.key
-                    ? "bg-blue-600 text-white shadow-sm"
+                    ? "bg-primary-custom text-white shadow-sm"
                     : theme === 'dark' 
                       ? "text-gray-300 hover:bg-gray-800 hover:text-white"
                       : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -193,13 +195,13 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
 
         {/* Update Notice */}
         <div className="p-4 flex-shrink-0">
-          <div className="bg-blue-600 rounded-lg p-4 text-center">
+          <div className="bg-primary-custom rounded-lg p-4 text-center">
             <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
               <span className="text-2xl">🚀</span>
             </div>
             <p className="text-white font-medium text-sm mb-1">Nova atualização disponível</p>
             <p className="text-blue-100 text-xs mb-3">clique para atualizar</p>
-            <button className="bg-white text-blue-600 text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+            <button className="bg-white text-primary-custom text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
               Atualizar
             </button>
           </div>

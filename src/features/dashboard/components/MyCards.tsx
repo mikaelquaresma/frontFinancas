@@ -22,7 +22,7 @@ export default function MyCards({ cardData }: MyCardsProps) {
     ];
 
     return (
-        <Card className="bg-gradient-to-br from-blue-600 to-purple-700 border-0 p-3 sm:p-4 text-white">
+        <Card className="bg-gradient-to-br from-primary-custom to-purple-700 border-0 p-3 sm:p-4 text-white">
             <div className="flex items-center justify-between mb-3">
                 <h3 className="text-lg font-semibold">Meus Cartoes</h3>
                 <button className="bg-white/20 hover:bg-white/30 rounded-full p-2 transition-colors">

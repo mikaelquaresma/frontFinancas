@@ -327,7 +327,7 @@ export default function RelatoriosContent() {
                                 value="pagamento" 
                                 id="pagamento"
                                 className={`${
-                                    theme === 'dark' ? 'border-gray-600 text-blue-400' : 'border-gray-300 text-blue-600'
+                                    theme === 'dark' ? 'border-gray-600 text-primary-custom' : 'border-gray-300 text-primary-custom'
                                 }`}
                             />
                             <Label 
@@ -344,7 +344,7 @@ export default function RelatoriosContent() {
                                 value="competencia" 
                                 id="competencia"
                                 className={`${
-                                    theme === 'dark' ? 'border-gray-600 text-blue-400' : 'border-gray-300 text-blue-600'
+                                    theme === 'dark' ? 'border-gray-600 text-primary-custom' : 'border-gray-300 text-primary-custom'
                                 }`}
                             />
                             <Label 
@@ -471,7 +471,7 @@ export default function RelatoriosContent() {
                                         onClick={() => setSelectedReport(type.key)}
                                         className={`w-full flex items-center gap-3 p-3 rounded-lg text-left transition-all duration-200 ${
                                             selectedReport === type.key
-                                                ? "bg-blue-600 text-white shadow-sm"
+                                                ? "bg-primary-custom text-white shadow-sm"
                                                 : theme === 'dark' 
                                                   ? "text-gray-300 hover:bg-gray-700 hover:text-white"
                                                   : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"

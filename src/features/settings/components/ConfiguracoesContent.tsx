@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTheme } from "@/stores/ThemeContext";
+import { useTranslation } from "@/hooks/useTranslation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,17 +30,18 @@ import {
 } from "lucide-react";
 
 export default function ConfiguracoesContent() {
-    const { theme } = useTheme();
+    const { theme, primaryColor, setPrimaryColor, language, setLanguage } = useTheme();
+    const { t } = useTranslation();
     const [activeSection, setActiveSection] = useState('Perfil');
     const [isSheetOpen, setIsSheetOpen] = useState(false);
 
     const menuItems = [
-        { icon: <User size={20} />, label: "Perfil", key: "Perfil" },
-        { icon: <Palette size={20} />, label: "Aparência", key: "Aparencia" },
-        { icon: <CreditCard size={20} />, label: "Conta", key: "Conta" },
-        { icon: <Shield size={20} />, label: "Privacidade", key: "Privacidade" },
-        { icon: <DollarSign size={20} />, label: "Cobrança", key: "Cobranca" },
-        { icon: <Plug size={20} />, label: "Conectores", key: "Conectores" },
+        { icon: <User size={20} />, label: t("settings.profile"), key: "Perfil" },
+        { icon: <Palette size={20} />, label: t("settings.appearance"), key: "Aparencia" },
+        { icon: <CreditCard size={20} />, label: t("settings.account"), key: "Conta" },
+        { icon: <Shield size={20} />, label: t("settings.privacy"), key: "Privacidade" },
+        { icon: <DollarSign size={20} />, label: t("settings.billing"), key: "Cobranca" },
+        { icon: <Plug size={20} />, label: t("settings.connectors"), key: "Conectores" },
         { icon: <Code size={20} />, label: "Claude Code", key: "ClaudeCode" },
     ];
 
@@ -51,7 +53,7 @@ export default function ConfiguracoesContent() {
                         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
                             <Avatar className="w-16 h-16 sm:w-20 sm:h-20">
                                 <AvatarImage src="/avatar.jpg" alt="Marvin McKinney" />
-                                <AvatarFallback className="bg-blue-600 text-white text-lg">MM</AvatarFallback>
+                                <AvatarFallback className="bg-primary-custom text-white text-lg">MM</AvatarFallback>
                             </Avatar>
                             <div className="text-center sm:text-left">
                                 <h3 className={`text-lg font-semibold ${
@@ -111,7 +113,7 @@ export default function ConfiguracoesContent() {
                             </div>
                         </div>
                         
-                        <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white">
+                        <Button className="w-full sm:w-auto bg-primary-custom hover:bg-primary-custom text-white">
                             Salvar alterações
                         </Button>
                     </div>
@@ -127,15 +129,15 @@ export default function ConfiguracoesContent() {
                         }`}>
                             <h3 className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 ${
                                 theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>Tema</h3>
+                            }`}>{t("settings.theme")}</h3>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                 <div>
                                     <Label htmlFor="theme" className={`text-sm sm:text-base ${
                                         theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                    }`}>Modo escuro</Label>
+                                    }`}>{t("settings.darkMode")}</Label>
                                     <p className={`text-xs sm:text-sm mt-1 ${
                                         theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                                    }`}>Ativar tema escuro da interface</p>
+                                    }`}>{t("settings.darkModeDesc")}</p>
                                 </div>
                                 <input 
                                     type="checkbox" 
@@ -153,12 +155,69 @@ export default function ConfiguracoesContent() {
                         }`}>
                             <h3 className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 ${
                                 theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}>Idioma</h3>
+                            }`}>{t("settings.primaryColor")}</h3>
                             <div>
                                 <Label className={`text-sm sm:text-base ${
                                     theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                                }`}>Idioma da interface</Label>
-                                <Select defaultValue="pt-br">
+                                }`}>{t("settings.primaryColorDesc")}</Label>
+                                <div className="flex flex-wrap gap-3 mt-3">
+                                    {[
+                                        { name: t('colors.blue'), color: '#0060d1' as const },
+                                        { name: t('colors.purple'), color: '#5b1695' as const },
+                                        { name: t('colors.pink'), color: '#ae1877' as const },
+                                        { name: t('colors.cyan'), color: '#18a3ae' as const },
+                                        { name: t('colors.green'), color: '#43ae18' as const },
+                                        { name: t('colors.black'), color: '#000' as const }
+                                    ].map((colorOption) => (
+                                        <button
+                                            key={colorOption.name}
+                                            onClick={() => setPrimaryColor(colorOption.color)}
+                                            className={`group relative w-10 h-10 rounded-lg border-2 transition-all duration-200 hover:scale-105 ${
+                                                primaryColor === colorOption.color 
+                                                    ? 'border-white shadow-lg ring-2 ring-offset-2' 
+                                                    : theme === 'dark' 
+                                                        ? 'border-gray-600 hover:border-gray-500' 
+                                                        : 'border-gray-300 hover:border-gray-400'
+                                            }`}
+                                            style={{ 
+                                                backgroundColor: colorOption.color
+                                            }}
+                                            title={colorOption.name}
+                                        >
+                                            {primaryColor === colorOption.color && (
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <div className="w-3 h-3 bg-white rounded-full flex items-center justify-center">
+                                                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: colorOption.color }}></div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            <div className={`absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity ${
+                                                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                                            }`}>
+                                                {colorOption.name}
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                                <p className={`text-xs mt-4 ${
+                                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                                }`}>A cor selecionada será aplicada em botões, links e elementos de destaque</p>
+                            </div>
+                        </div>
+                        
+                        <div className={`p-4 sm:p-6 rounded-lg ${
+                            theme === 'dark' 
+                                ? 'bg-gray-700/50 border border-gray-600' 
+                                : 'bg-gray-50 border border-gray-200'
+                        }`}>
+                            <h3 className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 ${
+                                theme === 'dark' ? 'text-white' : 'text-gray-900'
+                            }`}>{t("settings.language")}</h3>
+                            <div>
+                                <Label className={`text-sm sm:text-base ${
+                                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                                }`}>{t("settings.languageDesc")}</Label>
+                                <Select value={language} onValueChange={setLanguage}>
                                     <SelectTrigger className={`w-full mt-2 ${
                                         theme === 'dark' 
                                             ? 'bg-gray-700 border-gray-600 text-white' 
@@ -175,17 +234,17 @@ export default function ConfiguracoesContent() {
                                             theme === 'dark' 
                                                 ? 'text-white hover:bg-gray-600' 
                                                 : 'text-gray-900 hover:bg-gray-100'
-                                        }`}>Português (Brasil)</SelectItem>
+                                        }`}>{t("lang.pt-br")}</SelectItem>
                                         <SelectItem value="en" className={`${
                                             theme === 'dark' 
                                                 ? 'text-white hover:bg-gray-600' 
                                                 : 'text-gray-900 hover:bg-gray-100'
-                                        }`}>English</SelectItem>
+                                        }`}>{t("lang.en")}</SelectItem>
                                         <SelectItem value="es" className={`${
                                             theme === 'dark' 
                                                 ? 'text-white hover:bg-gray-600' 
                                                 : 'text-gray-900 hover:bg-gray-100'
-                                        }`}>Español</SelectItem>
+                                        }`}>{t("lang.es")}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -204,7 +263,7 @@ export default function ConfiguracoesContent() {
                         }`}>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
+                                    <div className="w-12 h-12 bg-primary-custom rounded-lg flex items-center justify-center shrink-0">
                                         <DollarSign className="h-6 w-6 text-white" />
                                     </div>
                                     <div className="min-w-0">
@@ -423,7 +482,7 @@ export default function ConfiguracoesContent() {
                                             }}
                                             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${
                                                 activeSection === item.key
-                                                    ? "bg-blue-600 text-white shadow-sm"
+                                                    ? "bg-primary-custom text-white shadow-sm"
                                                     : theme === 'dark' 
                                                       ? "text-gray-300 hover:bg-gray-800 hover:text-white"
                                                       : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -454,7 +513,7 @@ export default function ConfiguracoesContent() {
                                         onClick={() => setActiveSection(item.key)}
                                         className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200 ${
                                             activeSection === item.key
-                                                ? "bg-blue-600 text-white shadow-sm"
+                                                ? "bg-primary-custom text-white shadow-sm"
                                                 : theme === 'dark' 
                                                   ? "text-gray-300 hover:bg-gray-700 hover:text-white"
                                                   : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"

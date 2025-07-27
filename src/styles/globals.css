@@ -76,6 +76,12 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Custom primary color variables */
+  --primary-color: #0060d1;
+  --primary-rgb: 0, 96, 209;
+  --black-color: #000;
+  --black-rgb: 0, 0, 0;
 }
 
 .dark {
@@ -148,4 +154,56 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(156, 163, 175, 0.7);
+}
+
+/* Primary color utility classes */
+.bg-primary-custom {
+  background-color: var(--primary-color);
+}
+
+.text-primary-custom {
+  color: var(--primary-color);
+}
+
+.border-primary-custom {
+  border-color: var(--primary-color);
+}
+
+.ring-primary-custom {
+  --tw-ring-color: var(--primary-color);
+}
+
+.hover\:bg-primary-custom:hover {
+  background-color: var(--primary-color);
+  filter: brightness(0.9);
+}
+
+.focus\:ring-primary-custom:focus {
+  --tw-ring-color: var(--primary-color);
+}
+
+/* Black color utility classes */
+.bg-black-custom {
+  background-color: var(--black-color);
+}
+
+.text-black-custom {
+  color: var(--black-color);
+}
+
+.border-black-custom {
+  border-color: var(--black-color);
+}
+
+.ring-black-custom {
+  --tw-ring-color: var(--black-color);
+}
+
+.hover\:bg-black-custom:hover {
+  background-color: var(--black-color);
+  filter: brightness(0.9);
+}
+
+.focus\:ring-black-custom:focus {
+  --tw-ring-color: var(--black-color);
 }

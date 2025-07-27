@@ -26,7 +26,7 @@ export default function NotFound() {
                 </p>
                 
                 <Link href="/dashboard">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2 mx-auto">
+                    <Button className="bg-primary-custom hover:bg-primary-custom text-white flex items-center gap-2 mx-auto">
                         <Home className="w-4 h-4" />
                         Voltar ao Início
                     </Button>

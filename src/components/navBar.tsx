@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/stores/ThemeContext";
+import { useTranslation } from "@/hooks/useTranslation";
 import { Button } from "@/components/ui/button";
 
 interface PropsBarraNavegacao {
@@ -16,6 +17,7 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
   const router = useRouter();
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   const handleSair = () => {
     router.push('/');
@@ -24,26 +26,26 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
   const getPageTitle = () => {
     switch (pathname) {
       case '/dashboard':
-        return 'Início';
+        return t('navbar.home');
       case '/transferencias':
-        return 'Transferências';
+        return t('navbar.transfers');
       case '/relatorios':
-        return 'Relatórios';
+        return t('navbar.reports');
       case '/configuracoes':
-        return 'Configurações';
+        return t('navbar.settings');
       default:
-        return 'Início';
+        return t('navbar.home');
     }
   };
 
   const getPageSubtitle = () => {
     switch (pathname) {
       case '/transferencias':
-        return 'Gerencie suas transferências e depósitos';
+        return t('navbar.transfers.subtitle');
       case '/relatorios':
-        return 'Análise detalhada de receitas e despesas';
+        return t('navbar.reports.subtitle');
       case '/configuracoes':
-        return 'Personalize sua experiência no SobraMais';
+        return t('navbar.settings.subtitle');
       default:
         return null;
     }
@@ -71,7 +73,7 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
           
           {/* Logo Central */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-primary-custom rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">S</span>
             </div>
             <span className={`text-lg font-semibold ${
@@ -85,7 +87,7 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
               <div className="cursor-pointer">
                 <Avatar className="w-8 h-8">
                   <AvatarImage src="/avatar.jpg" alt="Marvin McKinney" />
-                  <AvatarFallback className="bg-blue-600 text-white text-sm">MM</AvatarFallback>
+                  <AvatarFallback className="bg-primary-custom text-white text-sm">MM</AvatarFallback>
                 </Avatar>
               </div>
             </DropdownMenuTrigger>
@@ -130,7 +132,7 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
             <input
               type="search"
               placeholder="Pesquisar aqui"
-              className={`w-full pl-10 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+              className={`w-full pl-10 pr-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-custom focus:border-transparent ${
                 theme === 'dark' 
                   ? 'bg-gray-800 border border-gray-700 text-white placeholder-gray-400' 
                   : 'bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-500'
@@ -169,7 +171,7 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
                   <input
                     type="search"
                     placeholder="Pesquisar aqui"
-                    className={`w-full pl-10 pr-4 py-2 text-sm md:text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    className={`w-full pl-10 pr-4 py-2 text-sm md:text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-custom focus:border-transparent ${
                       theme === 'dark' 
                         ? 'bg-gray-700 border border-gray-600 text-white placeholder-gray-400' 
                         : 'bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-500'
@@ -210,7 +212,7 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
                     <div className="flex items-center gap-2 md:gap-3 cursor-pointer min-w-0">
                       <Avatar className="w-6 h-6 md:w-8 md:h-8">
                         <AvatarImage src="/avatar.jpg" alt="Marvin McKinney" />
-                        <AvatarFallback className="bg-blue-600 text-white text-xs md:text-sm">MM</AvatarFallback>
+                        <AvatarFallback className="bg-primary-custom text-white text-xs md:text-sm">MM</AvatarFallback>
                       </Avatar>
                       <div className="text-right hidden lg:block min-w-0">
                         <p className={`text-sm font-medium truncate ${
