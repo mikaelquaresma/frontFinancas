@@ -23,6 +23,10 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
     router.push('/');
   };
 
+  const handleConfiguracoes = () => {
+    router.push('/configuracoes');
+  };
+
   const getPageTitle = () => {
     switch (pathname) {
       case '/dashboard':
@@ -102,18 +106,11 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
                 ? 'bg-gray-800 border-gray-700' 
                 : 'bg-white border-gray-200'
             }`}>
-              <DropdownMenuItem className={`${
+              <DropdownMenuItem className={`cursor-pointer ${
                 theme === 'dark' 
                   ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
                   : 'text-gray-700 hover:bg-gray-100'
-              }`}>
-                Perfil
-              </DropdownMenuItem>
-              <DropdownMenuItem className={`${
-                theme === 'dark' 
-                  ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}>
+              }`} onClick={handleConfiguracoes}>
                 Configurações
               </DropdownMenuItem>
               <DropdownMenuItem className={`cursor-pointer ${
@@ -235,18 +232,11 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
                       ? 'bg-gray-800 border-gray-700' 
                       : 'bg-white border-gray-200'
                   }`}>
-                    <DropdownMenuItem className={`${
+                    <DropdownMenuItem className={`cursor-pointer ${
                       theme === 'dark' 
                         ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
                         : 'text-gray-700 hover:bg-gray-100'
-                    }`}>
-                      Perfil
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className={`${
-                      theme === 'dark' 
-                        ? 'text-gray-300 hover:bg-gray-700 hover:text-white' 
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}>
+                    }`} onClick={handleConfiguracoes}>
                       Configurações
                     </DropdownMenuItem>
                     <DropdownMenuItem className={`cursor-pointer ${
