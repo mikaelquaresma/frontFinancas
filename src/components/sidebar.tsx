@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Home, FileText, BarChart3, Bell, MessageSquare, Download, Settings, HelpCircle, X } from "lucide-react";
+import { Home, FileText, BarChart3, Bell, MessageSquare, Download, Settings, HelpCircle, X, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/stores/ThemeContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import { usePlan } from "@/stores/PlanContext";
 
 interface PropsBarraLateral {
   estaAberta?: boolean;
@@ -17,6 +18,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
   const pathname = usePathname();
   const { theme } = useTheme();
   const { t } = useTranslation();
+  const { daysRemaining, isExpired } = usePlan();
   
   // Determine active item based on current path
   const getActiveItem = () => {
@@ -36,6 +38,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
   };
   
   const [activeItem, setActiveItem] = useState(getActiveItem());
+  
   
   // Update active item when pathname changes
   useEffect(() => {
@@ -117,6 +120,11 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
               <button
                 key={item.key}
                 onClick={() => {
+                  // Se o plano estiver expirado, só permite ir para o dashboard
+                  if (isExpired && item.key !== "Home") {
+                    return;
+                  }
+                  
                   setActiveItem(item.key);
                   // Save the clicked item to localStorage for 404 page
                   if (item.key !== "Home" && typeof window !== "undefined") {
@@ -137,17 +145,22 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                 }}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
-                  (activeItem === item.key || 
-                   (item.key === "Home" && pathname === "/dashboard") ||
-                   (item.key === "Transactions" && pathname === "/transferencias") ||
-                   (item.key === "Reports" && pathname === "/relatorios") ||
-                   (item.key === "Imports" && pathname === "/importacoes") ||
-                   (item.key === "Settings" && pathname === "/configuracoes") ||
-                   (pathname === "/404" && activeItem === item.key))
-                    ? "bg-primary-custom text-white shadow-sm"
-                    : theme === 'dark' 
-                      ? "text-gray-300 hover:bg-gray-800 hover:text-white"
-                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  // Se o plano expirou e não é o item Home, desabilitar
+                  isExpired && item.key !== "Home" 
+                    ? theme === 'dark'
+                      ? "text-gray-600 cursor-not-allowed opacity-50"
+                      : "text-gray-400 cursor-not-allowed opacity-50"
+                    : (activeItem === item.key || 
+                       (item.key === "Home" && pathname === "/dashboard") ||
+                       (item.key === "Transactions" && pathname === "/transferencias") ||
+                       (item.key === "Reports" && pathname === "/relatorios") ||
+                       (item.key === "Imports" && pathname === "/importacoes") ||
+                       (item.key === "Settings" && pathname === "/configuracoes") ||
+                       (pathname === "/404" && activeItem === item.key))
+                      ? "bg-primary-custom text-white shadow-sm"
+                      : theme === 'dark' 
+                        ? "text-gray-300 hover:bg-gray-800 hover:text-white"
+                        : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 )}
               >
                 {item.icon}
@@ -171,6 +184,11 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
               <button
                 key={item.key}
                 onClick={() => {
+                  // Se o plano estiver expirado, só permite configurações
+                  if (isExpired && item.key !== "Settings") {
+                    return;
+                  }
+                  
                   setActiveItem(item.key);
                   if (item.key === "Settings") {
                     router.push("/configuracoes");
@@ -184,11 +202,16 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                 }}
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200",
-                  activeItem === item.key
-                    ? "bg-primary-custom text-white shadow-sm"
-                    : theme === 'dark' 
-                      ? "text-gray-300 hover:bg-gray-800 hover:text-white"
-                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  // Se o plano expirou e não é Settings, desabilitar
+                  isExpired && item.key !== "Settings"
+                    ? theme === 'dark'
+                      ? "text-gray-600 cursor-not-allowed opacity-50"
+                      : "text-gray-400 cursor-not-allowed opacity-50"
+                    : activeItem === item.key
+                      ? "bg-primary-custom text-white shadow-sm"
+                      : theme === 'dark' 
+                        ? "text-gray-300 hover:bg-gray-800 hover:text-white"
+                        : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 )}
               >
                 {item.icon}
@@ -198,16 +221,31 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
           </div>
         </div>
 
-        {/* Update Notice */}
+        {/* Free Plan Notice */}
         <div className="p-4 flex-shrink-0">
-          <div className="bg-primary-custom rounded-lg p-4 text-center">
+          <div className={`rounded-lg p-4 text-center ${
+            isExpired 
+              ? 'bg-red-600' 
+              : 'bg-primary-custom'
+          }`}>
             <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
-              <span className="text-2xl">🚀</span>
+              <Calendar className="w-6 h-6 text-white" />
             </div>
-            <p className="text-white font-medium text-sm mb-1">Nova atualização disponível</p>
-            <p className="text-blue-100 text-xs mb-3">clique para atualizar</p>
-            <button className="bg-white text-primary-custom text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-              Atualizar
+            <p className="text-white font-medium text-sm mb-1">
+              {!isExpired ? t('plano.free') : t('plano.expirado')}
+            </p>
+            <p className="text-blue-100 text-xs mb-3">
+              {!isExpired 
+                ? `${daysRemaining} ${daysRemaining === 1 ? t('plano.dias.restante') : t('plano.dias.restantes')}`
+                : t('plano.renovar.continuar')
+              }
+            </p>
+            <button className={`bg-white text-sm font-medium px-4 py-2 rounded-lg transition-colors ${
+              isExpired 
+                ? 'text-red-600 hover:bg-gray-100' 
+                : 'text-primary-custom hover:bg-gray-100'
+            }`}>
+              {!isExpired ? t('plano.upgrade') : t('plano.renovar')}
             </button>
           </div>
         </div>

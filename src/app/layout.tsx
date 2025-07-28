@@ -1,17 +1,10 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "@/stores/ThemeContext";
 import { LoadingProvider } from "@/stores/LoadingContext";
+import { PlanProvider } from "@/stores/PlanContext";
 import LoadingSpinner from "@/components/LoadingSpinner";
-
-const openSans = Open_Sans({
-  variable: "--font-open-sans",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-  preload: true,
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${openSans.variable} antialiased`}
+        className={`${GeistSans.className} antialiased`}
         style={{ backgroundColor: 'lab(5 0.05 -4.54)' }}
       >
         <style dangerouslySetInnerHTML={{
@@ -39,10 +32,12 @@ export default function RootLayout({
           `
         }} />
         <ThemeProvider>
-          <LoadingProvider>
-            <LoadingSpinner />
-            {children}
-          </LoadingProvider>
+          <PlanProvider>
+            <LoadingProvider>
+              <LoadingSpinner />
+              {children}
+            </LoadingProvider>
+          </PlanProvider>
         </ThemeProvider>
       </body>
     </html>

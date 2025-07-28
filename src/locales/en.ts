@@ -117,6 +117,33 @@ export const en = {
   // Relatórios
   'relatorios.titulo': 'Reports',
   
+  // Plan
+  'plano.expirado.titulo': 'Your Free plan has expired!',
+  'plano.expirado.descricao': 'Continue enjoying all the premium features of SobraMais',
+  'plano.free': 'Free Plan',
+  'plano.expirado': 'Expired Plan',
+  'plano.dias.restante': 'day remaining',
+  'plano.dias.restantes': 'days remaining',
+  'plano.renovar.continuar': 'Renew to continue',
+  'plano.upgrade': 'Upgrade',
+  'plano.renovar': 'Renew',
+  'plano.mais.popular': 'Most Popular',
+  'plano.escolher': 'Choose',
+  'plano.processando': 'Processing...',
+  'plano.recursos.relatorios': 'Advanced reports',
+  'plano.recursos.seguranca': 'Premium security',
+  'plano.recursos.suporte': 'Priority support',
+  'plano.recursos.processamento': 'Faster processing',
+  'plano.pro.recursos.1': 'Unlimited reports',
+  'plano.pro.recursos.2': '24/7 support',
+  'plano.pro.recursos.3': 'API access',
+  'plano.pro.recursos.4': '5 users',
+  'plano.business.recursos.1': 'Everything from Pro',
+  'plano.business.recursos.2': 'Unlimited users',
+  'plano.business.recursos.3': 'Advanced integrations',
+  'plano.business.recursos.4': 'White-label',
+  'plano.rodape': '💰 First week free • 🔒 Cancel anytime • 📞 24/7 support',
+  
   // Comum
   'comum.salvar': 'Save',
   'comum.cancelar': 'Cancel',

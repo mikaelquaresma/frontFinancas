@@ -26,6 +26,7 @@ export default function ImportacoesContent() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [showFileUpload, setShowFileUpload] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const importOptions = [
@@ -220,19 +221,27 @@ export default function ImportacoesContent() {
             </CardHeader>
             <CardContent className="pt-0 px-3 sm:px-6 pb-4 sm:pb-6">
               <Button 
-                onClick={() => handleImport(option.id)}
+                onClick={() => {
+                  if (!showFileUpload) {
+                    setShowFileUpload(true);
+                  } else {
+                    handleImport(option.id);
+                  }
+                }}
                 className="w-full bg-primary-custom hover:bg-primary-custom/90 text-white text-xs sm:text-sm lg:text-base py-2 sm:py-2.5"
-                disabled={!selectedFile || isUploading}
+                disabled={showFileUpload && (!selectedFile || isUploading)}
               >
-                {isUploading ? t("comum.carregando") : t("importacoes.botao.importar")}
+                {isUploading ? t("comum.carregando") : 
+                 showFileUpload && selectedFile ? t("importacoes.botao.importar") : t("importacoes.botao.importar")}
               </Button>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      {/* File Upload Section */}
-      <Card className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+      {/* File Upload Section - Only show when showFileUpload is true */}
+      {showFileUpload && (
+        <Card className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
         <CardHeader className="px-3 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4">
           <CardTitle className={`text-base sm:text-lg lg:text-xl ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
             {t("importacoes.arquivo.titulo")}
@@ -319,7 +328,8 @@ export default function ImportacoesContent() {
             )}
           </div>
         </CardContent>
-      </Card>
+        </Card>
+      )}
 
       {/* Imported Transactions Table */}
       <Card className={`${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>

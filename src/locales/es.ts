@@ -117,6 +117,33 @@ export const es = {
   // Relatórios
   'relatorios.titulo': 'Informes',
   
+  // Plan
+  'plano.expirado.titulo': '¡Tu plan gratuito ha expirado!',
+  'plano.expirado.descricao': 'Continúa disfrutando de todas las funciones premium de SobraMais',
+  'plano.free': 'Plan Gratuito',
+  'plano.expirado': 'Plan Expirado',
+  'plano.dias.restante': 'día restante',
+  'plano.dias.restantes': 'días restantes',
+  'plano.renovar.continuar': 'Renueva para continuar',
+  'plano.upgrade': 'Actualizar',
+  'plano.renovar': 'Renovar',
+  'plano.mais.popular': 'Más Popular',
+  'plano.escolher': 'Elegir',
+  'plano.processando': 'Procesando...',
+  'plano.recursos.relatorios': 'Informes avanzados',
+  'plano.recursos.seguranca': 'Seguridad premium',
+  'plano.recursos.suporte': 'Soporte prioritario',
+  'plano.recursos.processamento': 'Procesamiento más rápido',
+  'plano.pro.recursos.1': 'Informes ilimitados',
+  'plano.pro.recursos.2': 'Soporte 24/7',
+  'plano.pro.recursos.3': 'Acceso API',
+  'plano.pro.recursos.4': '5 usuarios',
+  'plano.business.recursos.1': 'Todo del Pro',
+  'plano.business.recursos.2': 'Usuarios ilimitados',
+  'plano.business.recursos.3': 'Integraciones avanzadas',
+  'plano.business.recursos.4': 'Marca blanca',
+  'plano.rodape': '💰 Primera semana gratis • 🔒 Cancela cuando quieras • 📞 Soporte 24/7',
+  
   // Comum
   'comum.salvar': 'Guardar',
   'comum.cancelar': 'Cancelar',
