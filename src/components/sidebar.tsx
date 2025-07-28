@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Home, Users, FileText, BarChart3, Bell, MessageSquare, Settings, HelpCircle, X } from "lucide-react";
+import { Home, FileText, BarChart3, Bell, MessageSquare, Download, Settings, HelpCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/stores/ThemeContext";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -24,6 +24,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
     if (pathname === "/transferencias") return "Transactions";
     if (pathname === "/relatorios") return "Reports";
     if (pathname === "/configuracoes") return "Settings";
+    if (pathname === "/importacoes") return "Imports";
     if (pathname === "/404") {
       // Return the last clicked item from localStorage or default
       if (typeof window !== "undefined") {
@@ -44,12 +45,12 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
 
   const menuItems = [
     { icon: <Home size={20} />, label: t("menu.inicio"), key: "Home" },
-    { icon: <Users size={20} />, label: t("menu.contas"), key: "Accounts" },
     { icon: <FileText size={20} />, label: t("menu.transacoes"), key: "Transactions" },
     { icon: <BarChart3 size={20} />, label: t("menu.relatorios"), key: "Reports" },
     { icon: <FileText size={20} />, label: t("menu.despesas"), key: "Expenses" },
     { icon: <Bell size={20} />, label: t("menu.notificacoes"), key: "Notifications" },
     { icon: <MessageSquare size={20} />, label: t("menu.mensagens"), key: "Messages" },
+    { icon: <Download size={20} />, label: t("menu.importacoes"), key: "Imports" },
   ];
 
   const bottomItems = [
@@ -127,6 +128,8 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                     router.push("/transferencias");
                   } else if (item.key === "Reports") {
                     router.push("/relatorios");
+                  } else if (item.key === "Imports") {
+                    router.push("/importacoes");
                   } else {
                     router.push("/404");
                   }
@@ -138,6 +141,7 @@ export default function BarraLateral({ estaAberta = false, aoFechar }: PropsBarr
                    (item.key === "Home" && pathname === "/dashboard") ||
                    (item.key === "Transactions" && pathname === "/transferencias") ||
                    (item.key === "Reports" && pathname === "/relatorios") ||
+                   (item.key === "Imports" && pathname === "/importacoes") ||
                    (item.key === "Settings" && pathname === "/configuracoes") ||
                    (pathname === "/404" && activeItem === item.key))
                     ? "bg-primary-custom text-white shadow-sm"

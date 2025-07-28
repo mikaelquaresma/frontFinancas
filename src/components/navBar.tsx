@@ -33,6 +33,8 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
         return t('nav.relatorios');
       case '/configuracoes':
         return t('nav.configuracoes');
+      case '/importacoes':
+        return t('importacoes.titulo');
       default:
         return t('nav.inicio');
     }
@@ -40,12 +42,16 @@ export default function BarraNavegacao({ aoAlternarMenu }: PropsBarraNavegacao) 
 
   const getPageSubtitle = () => {
     switch (pathname) {
+      case '/dashboard':
+        return t('nav.inicio.subtitulo');
       case '/transferencias':
         return t('nav.transferencias.subtitulo');
       case '/relatorios':
         return t('nav.relatorios.subtitulo');
       case '/configuracoes':
         return t('nav.configuracoes.subtitulo');
+      case '/importacoes':
+        return 'Gerencie suas importações de dados de forma simples e eficiente';
       default:
         return null;
     }

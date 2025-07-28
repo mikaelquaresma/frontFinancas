@@ -99,7 +99,7 @@ export default function RecentTransactions({ transactions }: RecentTransactionsP
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-3 sm:gap-0">
                 <h3 className={`text-base sm:text-lg font-semibold ${
                     theme === 'dark' ? 'text-white' : 'text-gray-900'
-                }`}>Transacoes Recentes</h3>
+                }`}>Histórico de Transações</h3>
                 <Select value={filter} onValueChange={handleFilterChange}>
                     <SelectTrigger className={`w-full sm:w-[140px] ${
                         theme === 'dark' 

@@ -1,16 +1,16 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import { ThemeProvider } from "@/stores/ThemeContext";
+import { LoadingProvider } from "@/stores/LoadingContext";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${openSans.variable} antialiased`}
         style={{ backgroundColor: 'lab(5 0.05 -4.54)' }}
       >
         <style dangerouslySetInnerHTML={{
@@ -39,7 +39,10 @@ export default function RootLayout({
           `
         }} />
         <ThemeProvider>
-          {children}
+          <LoadingProvider>
+            <LoadingSpinner />
+            {children}
+          </LoadingProvider>
         </ThemeProvider>
       </body>
     </html>
